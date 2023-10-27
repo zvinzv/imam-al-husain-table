@@ -11,8 +11,8 @@ export default function Home() {
     head: ["الدرس", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"],
     body: [["1","احياء", "كيمياء", "فيزياء", " احياء", " كيمياء"], ["2","فيزياء", "احياء", "انكليزي", "عربي", " عربي"], ["3","انكليزي", "فنية", "رياضيات", " انكليزي", " رياضيات"], ["4","رياضيات", "عربي", " عربي", "اسلامية", " اسلامية"], ["5","أرض", "فيزياء", "حاسوب", "رياضيات", " أرض"]],
     date:{
-      day: new Date("2023-10-24").toLocaleDateString("ar-IQ", {weekday: 'long'}),
-      fullDate: new Date("2023-10-24").toLocaleDateString("ar-Iq", {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}),
+      day: new Date().toLocaleDateString("ar-IQ", {weekday: 'long'}),
+      fullDate: new Date().toLocaleDateString("ar-Iq", {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}),
       toDayHoliday: false,
     }
   }
@@ -21,8 +21,8 @@ export default function Home() {
     <div>
       <div className="mx-auto w-fit text-center mt-6">
       <h1 className="text-3xl font-bold">جدول الدروس اليومية.</h1>
-      <h1 className="text-lg font-bold dark:light mt-1 ">للصف الخامس الاعدادي, د.</h1>
-      <h1 className="text-xl font-bold dark:light mt-5">
+      <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
+      <h1 className="text-xl font-bold dark:font-light mt-5">
         {data.date.fullDate} {data.date.toDayHoliday ? 
         <>
           <span className="text-red-400">عطلة</span> 
