@@ -1,18 +1,20 @@
 import SendReq from "@/components/SendReq"
 import { Metadata } from "next"
 import 'remixicon/fonts/remixicon.css'
-
 export const metadata: Metadata = {
   title: 'الجدول الدروس اليومية',
   description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع)',
+}
+function getCurrentDate(props:object) {
+  return new Date().toLocaleDateString("ar-IQ", props);
 }
 export default function Home() {
   const data = {
     head: ["الدرس", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"],
     body: [["1","احياء", "كيمياء", "فيزياء", " احياء", " كيمياء"], ["2","فيزياء", "احياء", "انكليزي", "عربي", " عربي"], ["3","انكليزي", "فنية", "رياضيات", " انكليزي", " رياضيات"], ["4","رياضيات", "عربي", " عربي", "اسلامية", " اسلامية"], ["5","أرض", "فيزياء", "حاسوب", "رياضيات", " أرض"]],
     date:{
-      day: new Date().toLocaleDateString("ar-IQ", {weekday: 'long'}),
-      fullDate: new Date().toLocaleDateString("ar-Iq", {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}),
+      fullDate: getCurrentDate({weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}),
+      day: getCurrentDate({weekday: 'long'}),
       toDayHoliday: false,
     }
   }
