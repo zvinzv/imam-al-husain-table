@@ -1,13 +1,23 @@
 "use client"
-import { useState } from "react";
-import { setCookie,getCookie } from "cookies-next";
-import { useRef } from 'react';
+import { useState, useRef, useEffect } from "react";
+import { setCookie,getCookie,deleteCookie } from "cookies-next";
 import "remixicon/fonts/remixicon.css"
 
-const SendReq = ({secret}:{secret:string}) => {
+const SendReq = ({secret, maxAge=60*60*3, err=false}:{secret:string, maxAge?:number, err?:boolean}) => {
   const [loading, setLoading] = useState(false);
   const [isDone, setDone] = useState<number|null>()
-  
+  const color = []
+  for (let i = 0; i > 10; i++) {
+    color.push("bg-stone-300")
+    color.push("bg-slate-300")
+    color.push("dark:bg-stone-600")
+    color.push("dark:bg-slate-600")
+
+    color.push("dark:hover:bg-stone-500")
+    color.push("dark:hover:bg-slate-500")
+    color.push("hover:bg-stone-400")
+    color.push("hover:bg-slate-400")
+  }
   const timerId:any = useRef<NodeJS.Timeout>(null); // استخدم useRef لتخزين معرف العداد التنازلي
   const handleClick = async () => {
     
@@ -18,11 +28,31 @@ const SendReq = ({secret}:{secret:string}) => {
       if (timerId.current) {
           clearTimeout(timerId.current);
       }
-      if (getCookie("SendRequest") !== "true" && loading !== true) {
+      if (!err) {
+        if (getCookie("SendRequest") !== "true" && loading !== true) {
+              try {
+                  const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+"&text=طلب تعديل جديد.");
+                  const todos = await response.json();
+                  todos.ok && setDone(1);true && setCookie("SendRequest", todos.ok, {maxAge});
+                  setLoading(false);
+              } catch (error) {
+                  setTimeout(() => {
+                      setDone(-1);
+                      setLoading(false);
+                  }, 100);
+              }
+          } else {
+            setTimeout(() => {
+              setDone(0);
+              setLoading(false);
+            }, 100);
+          }
+      }else{
+        if (getCookie("SendRequestFaild") !== "true" && loading !== true) {
           try {
-              const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+"&text=طلب تعديل جديد");
+              const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+"&text=طلب تصحيح التاريخ.");
               const todos = await response.json();
-              todos.ok && setDone(1);true && setCookie("SendRequest", todos.ok, {maxAge: 60*60*6});
+              todos.ok && setDone(1);true && setCookie("SendRequestFaild", todos.ok, {maxAge});
               setLoading(false);
           } catch (error) {
               setTimeout(() => {
@@ -31,11 +61,13 @@ const SendReq = ({secret}:{secret:string}) => {
               }, 100);
           }
       } else {
-          setTimeout(() => {
-              setDone(0);
-              setLoading(false);
-          }, 100);
+        setTimeout(() => {
+          setDone(0);
+          setLoading(false);
+        }, 100);
       }
+      }
+      
       timerId.current = setTimeout(() => {
           setDone(null);
       }, 5000);
@@ -50,9 +82,10 @@ const SendReq = ({secret}:{secret:string}) => {
       }}>
 
         {loading ? 
-            <button type="submit" className="flex items-center gap-2 bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700  transition-all p-3 rounded w-fit mx-auto font-bold opacity-60"><i className="ri-file-edit-fill"></i>طلب اعادة النظر أو تعديل الجدول. </button> 
+            <button type="submit" className={`flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i>طلب اعادة النظر أو تعديل الجدول. </button> 
           : 
-            <button type="submit" className="flex items-center gap-2 bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 transition-all p-3 rounded w-fit mx-auto font-bold"><i className="ri-file-edit-fill"></i> طلب اعادة النظر أو تعديل الجدول.</button>}
+            <button type="submit" className={`flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i> طلب اعادة النظر أو تعديل الجدول.</button>
+        }
         
         {   isDone === 1 ?
             <p className="text-md text-center text-emerald-500 font-bold mt-2 flex gap-2 items-center justify-center">
