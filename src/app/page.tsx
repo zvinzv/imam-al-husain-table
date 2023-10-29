@@ -1,4 +1,5 @@
 import SendReq from "@/components/SendReq"
+import moment from "moment";
 import { Metadata } from "next"
 import 'remixicon/fonts/remixicon.css'
 export const metadata: Metadata = {
@@ -65,9 +66,10 @@ export default function Home() {
         </table>
       </div>
       
-      <div className="w-fit mx-auto flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <SendReq secret={"1145036551"} />
         {data.date.toDayHoliday && <a href="" className="text-gray-500 w-fit  text-[.65rem]  underline md:hover:underline md:no-underline underline-offset-[5px] font-bold">رابط مصدر العطلة الرسمية.</a>}
+        <p className="text-xs mt-3">{moment().format("DD-MM-YYYY")}</p>
       </div>
     </div>
   )
