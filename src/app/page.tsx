@@ -11,7 +11,9 @@ function getCurrentDate(props:string, ty:object) {
 }
 async function GET(url:string){
   const response = await fetch(url, {
-    cache:"no-cache"
+    next:{
+      revalidate: 60
+    },
   })
   const data = await response.json()
   return data
