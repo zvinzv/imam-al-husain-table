@@ -1,11 +1,6 @@
 import SendReq from "@/components/SendReq"
-import moment from "moment";
-import { Metadata } from "next"
 import 'remixicon/fonts/remixicon.css'
-export const metadata: Metadata = {
-  title: 'الجدول الدروس اليومية',
-  description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع)',
-}
+
 function getCurrentDate(props:string, ty:object) {
   return new Date(props).toLocaleDateString("ar-IQ", ty);
 }
@@ -96,7 +91,7 @@ export default async function Class() {
       </div>
       
       <div className="flex flex-col items-center">
-        {data.date.toDayHoliday === undefined ? <SendReq secret={"1145036551"} maxAge={60} err={true} /> : <SendReq secret={"1145036551"} err={true} />}
+        {data.date.toDayHoliday === undefined ? <SendReq secret={"1145036551"} maxAge={60} err={true} msg={"طلب تصحيح التاريخ."} /> : <SendReq secret={"1145036551"} err={true} msg={"طلب تعديل جديد."} />}
         {data.date.toDayHoliday && <a href="" className="text-gray-500 w-fit  text-[.65rem]  underline md:hover:underline md:no-underline underline-offset-[5px] font-bold">رابط مصدر العطلة الرسمية.</a>}
       </div>
     </div>
