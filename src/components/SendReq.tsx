@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { setCookie,getCookie,deleteCookie } from "cookies-next";
 import "remixicon/fonts/remixicon.css"
 
-const SendReq = ({secret, maxAge=60*60*3, err=false}:{secret:string, maxAge?:number, err?:boolean}) => {
+const SendReq = ({secret, maxAge=60*60*3, err=false, msg}:{secret:string, maxAge?:number, err?:boolean, msg?:string}) => {
   const [loading, setLoading] = useState(false);
   const [isDone, setDone] = useState<number|null>()
   const color = []
@@ -31,7 +31,7 @@ const SendReq = ({secret, maxAge=60*60*3, err=false}:{secret:string, maxAge?:num
       if (!err) {
         if (getCookie("SendRequest") !== "true" && loading !== true) {
               try {
-                  const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+"&text=طلب تعديل جديد.");
+                  const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+`&text=${msg ? msg : "طلب تعديل جديد."}`);
                   const todos = await response.json();
                   todos.ok && setDone(1);true && setCookie("SendRequest", todos.ok, {maxAge});
                   setLoading(false);
@@ -50,7 +50,7 @@ const SendReq = ({secret, maxAge=60*60*3, err=false}:{secret:string, maxAge?:num
       }else{
         if (getCookie("SendRequestFaild") !== "true" && loading !== true) {
           try {
-              const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+"&text=طلب تصحيح التاريخ.");
+              const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+`&text=${msg ? msg : "طلب تصحيح التاريخ."}`);
               const todos = await response.json();
               todos.ok && setDone(1);true && setCookie("SendRequestFaild", todos.ok, {maxAge});
               setLoading(false);
