@@ -1,4 +1,6 @@
 import SendReq from "@/components/SendReq"
+import GetCorrectDate from "@/func/GetCorrectDate"
+import GetDateFromTelegram from "@/func/GetDateFromTelegram"
 import { Metadata } from "next"
 import 'remixicon/fonts/remixicon.css'
 export const metadata: Metadata = {
@@ -12,7 +14,18 @@ type Exam ={
   subject:   string,
   done?:      boolean
 }
+
 export default async function Exam() {
+  // Get valide date 'YYYY-MM-DD'
+  const CorrectDate= await GetDateFromTelegram().then(res => {
+    // -1 mean remove 1 day
+    return GetCorrectDate(res.result[0].message.text,-1)
+  })
+  const CurrentDate = await GetDateFromTelegram().then(res => {
+    // 0 mean remove 0 day
+    return GetCorrectDate(res.result[0].message.text,0)
+  })
+  // Data
   const data:{head:string[], body:Exam[]} = {
     head: ["اليوم","التاريخ","المادة"],
     body:  [
@@ -142,6 +155,12 @@ export default async function Exam() {
       },
     ],
   }
+  // Set {done: true} for passed date.
+  data.body.forEach(D => {
+    if (new Date(D.date) < new Date(CorrectDate)) {
+      D.done = true
+    }
+  })
   return (
     <div>
       <div className="mx-auto w-fit text-center mt-6">
@@ -163,9 +182,9 @@ export default async function Exam() {
           
             {data.body.map(H => 
                 <tr key={H.id}>
-                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined ? "line-through" : ""} p-1 px-2 text-center border border-collapse border-stone-700`}>{H.day}</td>
-                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined ? "line-through" : ""} p-1 px-2 text-center border border-collapse border-stone-700`}>{H.date}</td>
-                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined ? "line-through" : ""} p-1 px-2 text-center border border-collapse border-stone-700`}>{H.subject}</td>
+                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : H.date === CurrentDate ? "dark:bg-red-600/80 border-red-900 dark:text-white animate-pulse" : "" } p-1 px-2 text-center border border-collapse border-stone-700`}>{H.day}</td>
+                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : H.date === CurrentDate ? "dark:bg-red-600/80 border-red-900 dark:text-white animate-pulse" : ""} p-1 px-2 text-center border border-collapse border-stone-700`}>{H.date}</td>
+                  <td className={` ${H.subject === "راحة" ? "bg-slate-300" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : H.date === CurrentDate ? "dark:bg-red-600/80 border-red-900 dark:text-white animate-pulse" : ""} p-1 px-2 text-center border border-collapse border-stone-700`}>{H.subject}</td>
                 </tr>)}
           </tbody>
         </table>
@@ -173,7 +192,7 @@ export default async function Exam() {
       
       <div className="flex flex-col gap-3 items-center">
         <h1 className="text-md font-bold">اخر تحديث: 2023-11-01.</h1>
-        { <SendReq secret={"1145036551"} err={true} maxAge={30} msg={"تصحيح جدول الامتحانات."}/>}
+        { <SendReq key={3} secret={"1145036551"} err={true} maxAge={10} msg={"تصحيح جدول الامتحانات."}/>}
       </div>
     </div>
   )

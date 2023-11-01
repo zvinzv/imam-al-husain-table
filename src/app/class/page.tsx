@@ -5,8 +5,6 @@ export const metadata: Metadata = {
   description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
 }
 export default function page() {
-
-  console.log()  
 return (
     <>
     <Class/>

@@ -3,16 +3,15 @@ import { useState, useRef, useEffect } from "react";
 import { setCookie,getCookie,deleteCookie } from "cookies-next";
 import "remixicon/fonts/remixicon.css"
 
-const SendReq = ({secret, maxAge=60*60*3, err=false, msg}:{secret:string, maxAge?:number, err?:boolean, msg?:string}) => {
+const SendReq = ({secret, maxAge, err=false, msg}:{secret:string, maxAge?:number, err?:boolean, msg?:string}) => {
   const [loading, setLoading] = useState(false);
   const [isDone, setDone] = useState<number|null>()
-  const color = []
+  let color = []
   for (let i = 0; i > 10; i++) {
     color.push("bg-stone-300")
     color.push("bg-slate-300")
     color.push("dark:bg-stone-600")
     color.push("dark:bg-slate-600")
-
     color.push("dark:hover:bg-stone-500")
     color.push("dark:hover:bg-slate-500")
     color.push("hover:bg-stone-400")
@@ -28,45 +27,31 @@ const SendReq = ({secret, maxAge=60*60*3, err=false, msg}:{secret:string, maxAge
       if (timerId.current) {
           clearTimeout(timerId.current);
       }
-      if (!err) {
-        if (getCookie("SendRequest") !== "true" && loading !== true) {
-              try {
-                  const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+`&text=${msg ? msg : "طلب تعديل جديد."}`);
-                  const todos = await response.json();
-                  todos.ok && setDone(1);true && setCookie("SendRequest", todos.ok, {maxAge});
-                  setLoading(false);
-              } catch (error) {
-                  setTimeout(() => {
-                      setDone(-1);
-                      setLoading(false);
-                  }, 100);
-              }
-          } else {
+      
+      if (getCookie("SendRequestFaild") !== "true" && loading !== true) {
+        try {
+            const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+`&text=${msg ? msg : "طلب تصحيح التاريخ."}`);
+            const todos = await response.json();
+            if (todos.ok) {
+              setDone(1);
+              setCookie("SendRequestFaild", todos.ok, {
+                maxAge: maxAge ? maxAge : 60 * 60 * 3
+              });
+            }
+            setLoading(false);
+        } catch (error) {
             setTimeout(() => {
-              setDone(0);
-              setLoading(false);
+                setDone(-1);
+                setLoading(false);
             }, 100);
-          }
-      }else{
-        if (getCookie("SendRequestFaild") !== "true" && loading !== true) {
-          try {
-              const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secret+`&text=${msg ? msg : "طلب تصحيح التاريخ."}`);
-              const todos = await response.json();
-              todos.ok && setDone(1);true && setCookie("SendRequestFaild", todos.ok, {maxAge});
-              setLoading(false);
-          } catch (error) {
-              setTimeout(() => {
-                  setDone(-1);
-                  setLoading(false);
-              }, 100);
-          }
+        }
       } else {
         setTimeout(() => {
           setDone(0);
           setLoading(false);
         }, 100);
       }
-      }
+      
       
       timerId.current = setTimeout(() => {
           setDone(null);
