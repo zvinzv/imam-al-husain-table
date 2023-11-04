@@ -1,12 +1,11 @@
 import SendReq from "@/components/SendReq"
 import GetCorrectDate from "@/func/GetCorrectDate"
 import GetDateFromTelegram from "@/func/GetDateFromTelegram"
+import SaveToCookies from "@/func/SaveToCookies"
 import { Metadata } from "next"
+import { cookies } from "next/headers"
 import 'remixicon/fonts/remixicon.css'
-export const metadata: Metadata = {
-  title: 'الجدول الامتحانات الشهرية',
-  description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
-}
+
 type Exam ={ 
   id:        number,
   day:       string,
@@ -16,15 +15,12 @@ type Exam ={
 }
 
 export default async function Exam() {
+  const TelegramApiDate = await GetDateFromTelegram()
   // Get valide date 'YYYY-MM-DD'
-  const CorrectDate= await GetDateFromTelegram().then(res => {
-    // -1 mean remove 1 day
-    return GetCorrectDate(res.result[0].message.text,-1)
-  })
-  const CurrentDate = await GetDateFromTelegram().then(res => {
-    // 0 mean remove 0 day
-    return GetCorrectDate(res.result[0].message.text,0)
-  })
+  // -1 mean remove 1 day
+  const CorrectDate= GetCorrectDate(TelegramApiDate.data,-1)
+  // 0 mean remove 0 day
+  const CurrentDate = GetCorrectDate(TelegramApiDate.data,0)
   // Data
   const data:{head:string[], body:Exam[]} = {
     head: ["اليوم","التاريخ","المادة"],
@@ -165,11 +161,12 @@ export default async function Exam() {
   for (let i = 0; i > 10; i++) {
     color.push("bg-red-300")
     color.push("bg-red-300")
-    color.push("dark:bg-red-600/80")
-    color.push("dark:bg-red-600/80")
+    color.push("dark:bg-red-600/70")
+    color.push("dark:bg-red-600/70")
   }
   return (
     <div>
+      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
       <div className="mx-auto w-fit text-center mt-6">
       <h1 className="text-3xl font-bold">جدول الامتحانات الشهرية.</h1>
       <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي.</h1>
@@ -180,26 +177,44 @@ export default async function Exam() {
             <tr>
               {data.head.map((H:string)=> {
                 return(
-                    <th key={data.head.indexOf(H)} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>
+                    <th key={data.head.indexOf(H)} className="bg-stone-200 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>
                 )
               })}
             </tr>
           </thead>
           <tbody>
           
-            {data.body.map(H => 
-                <tr key={H.id}>
-                  <td className={`  ${H.subject === "راحة" ? "bg-slate-200 text-black/40" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-collapse border-stone-700 ${H.date === CurrentDate ? "dark:bg-red-600/70 bg-red-300/70 border-red-800 dark:text-white animate-pulse" : ""}`}>{H.day}</td>
-                  <td className={`  ${H.subject === "راحة" ? "bg-slate-200 text-black/40" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-collapse border-stone-700 ${H.date === CurrentDate ? "dark:bg-red-600/70 bg-red-300/70 border-red-800 dark:text-white animate-pulse" : ""}`}>{H.date}</td>
-                  <td className={`  ${H.subject === "راحة" ? "bg-slate-200 text-black/40" : "bg-slate-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-collapse border-stone-700 ${H.date === CurrentDate ? "dark:bg-red-600/70 bg-red-300/70 border-red-800 dark:text-white animate-pulse" : ""}`}>{H.subject}</td>
-                </tr>)}
+            {data.body.map(H => {
+              if (H.date === CurrentDate){
+                return(
+                  <tr key={H.id}>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700`}>{H.day}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.date}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.subject}</td>
+                  </tr>
+                )
+              }else if (H.date !== CurrentDate){
+
+                return(
+                  <tr key={H.id}>
+                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700 `}>{H.day}</td>
+                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.date}</td>
+                    <td className={` ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.subject}</td>
+                  </tr>
+                )
+              }else{
+                return
+              }
+            })}
           </tbody>
         </table>
       </div>
       
       <div className="flex flex-col gap-3 items-center">
         <h1 className="text-md font-bold">اخر تحديث: 2023-11-01.</h1>
-        { <SendReq key={3} secret={"1145036551"} err={true} maxAge={10} msg={"تصحيح جدول الامتحانات."}/>}
+        <div className="mb-14">
+        { <SendReq key={3} secretId={"1145036551"} err={true} maxAge={10} msg={"تصحيح جدول الامتحانات."} unieq="Exam"/>}
+        </div>
       </div>
     </div>
   )

@@ -1,13 +1,11 @@
 import { Metadata } from "next"
-import Exam from '@/components/Exam'
+import HomeWork from "@/components/HomeWork"
 export const metadata: Metadata = {
-  title: 'جدول الامتحانات الشهرية.',
+  title: 'جدول التحاضير اليومي.',
   description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
 }
 export default function page() {
   return (
-    <>
-      <Exam />
-    </>
+    <HomeWork />  
   )
 }

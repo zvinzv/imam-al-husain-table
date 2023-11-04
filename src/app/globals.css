@@ -20,3 +20,10 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
+.text_en {
+  font-family: var(--font-en) ;
+}
+
+.text_ar {
+  font-family: var(--font-ar);
+}
