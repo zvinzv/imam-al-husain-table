@@ -45,21 +45,21 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     physics: {
       homeWork: {
-        title: "",
-        sure: ""
+        title: "تحضير قانون نيوتن الثاني",
+        sure: "مرتضى ظافر"
       },
       exam: {
-        title: "",
+        title: "من البداية لحد ما نوصل",
         sure: ""
       }
     },
     chemistry: {
       homeWork: {
-        title: "",
+        title: "تحضير الرينين",
         sure: ""
       },
       exam: {
-        title: "",
+        title: "..",
         sure: ""
       }
     },
@@ -105,7 +105,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     paint: {
       homeWork: {
-        title: "",
+        title: "تحضير الاسئله ورسم الاشكال الهندسية",
         sure: ""
       },
       exam: {
