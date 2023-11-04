@@ -4,14 +4,13 @@ import GetSubjectDescription, { Sub } from "@/func/GetSubjectDescription"
 import { Metadata} from "next"
 import Link from "next/link"
 import 'remixicon/fonts/remixicon.css'
-
-export function generateMetadata({ params }: {params: {id: string}}): Metadata {
+export function generateMetadata({ params }: {params: {id: "biology" | "chemistry" | "physics" | "arabic" | "math" | "english" | "paint" | "islamic" | "earth" | "pc"}}): Metadata {
   return {
     title: `تفاصيل لمادة ال${GetArabicSubjectFromEnglish(params.id)}.`,
     description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
   }
 }
-export function Card({subject, title, content, sureMsg, icon="ri-book-fill"}:{subject:string, title:string, content:string, sureMsg?:string, icon?:string}){
+function Card({subject, title, content, sureMsg, icon="ri-book-fill"}:{subject:string, title:string, content:string, sureMsg?:string, icon?:string}): JSX.Element{
   return (
     <div className="bg-stone-800 w-full mt-6 white">
       <p className="text-2xl bg-stone-700 flex justify-center sm:justify-start items-center h-12 p-3 font-semibold gap-2"> <i className={icon}></i>  <span>{title}</span></p>
@@ -25,7 +24,7 @@ export function Card({subject, title, content, sureMsg, icon="ri-book-fill"}:{su
     </div>
   )
 }
-export default function page({params}:{params:any}) {
+export default function page({params}:{params: {id: "biology" | "chemistry" | "physics" | "arabic" | "math" | "english" | "paint" | "islamic" | "earth" | "pc"}}) {
   let subject: Sub = GetSubjectDescription(params.id) as Sub
   
   return (
