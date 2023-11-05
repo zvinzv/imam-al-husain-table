@@ -2,6 +2,7 @@ import SendReq from "@/components/SendReq"
 import GetCorrectDate from "@/func/GetCorrectDate";
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
 import SaveToCookies from "@/func/SaveToCookies";
+import Image from "next/image";
 import 'remixicon/fonts/remixicon.css'
 function getCurrentDate(props:string, ty:object) {
   return new Date(props).toLocaleDateString("ar-IQ", ty);
@@ -49,7 +50,16 @@ export default async function Class() {
       .</h1>
       </div>
       <div >
-        <table className="table-fixed m-2 mx-auto font-bold">
+        <h1 className="text-center text-3xl my-6">الجدول الجديد.</h1>
+        <a href="/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg" className="flex justify-center  ">
+          <div className="relative w-full max-w-lg aspect-square">
+            <Image src={"/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg"} alt="ss" fill className="object-contain"/>
+          </div>
+        </a>
+        <a href="/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg" download className="flex items-center gap-2 mt-6 bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700 transition-all p-3 rounded w-fit mx-auto font-bold">تحميل الجدول على شكل صورة !</a>
+        <h1 className="text-center text-2xl my-6">الجدول القديم تحت الصيانة.</h1>
+        
+        {/* <table className="table-fixed m-2 mx-auto font-bold">
           <thead>
             <tr>
               {data.head.map((H:string)=> {
@@ -84,13 +94,13 @@ export default async function Class() {
             })
           }
           </tbody>
-        </table>
+        </table> */}
       </div>
       
-      <div className="flex flex-col items-center">
+      {/* <div className="flex flex-col items-center">
         {data.date.toDayHoliday === undefined ? <SendReq key={1} secretId={"1145036551"} maxAge={5} err={true} msg={"طلب تصحيح التاريخ."} unieq="Class"/> : <SendReq key={2} secretId={"1145036551"} err={true} maxAge={10} msg={"طلب تعديل جديد."} unieq="Class"/>}
         {data.date.toDayHoliday && <a href="" className="text-gray-500 w-fit  text-[.65rem]  underline md:hover:underline md:no-underline underline-offset-[5px] font-bold">رابط مصدر العطلة الرسمية.</a>}
-      </div>
+      </div> */}
     </div>
   )
 }
