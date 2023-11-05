@@ -75,8 +75,8 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     pc: {
       homeWork: {
-        title: "",
-        sure: ""
+        title: "الدرس الاول من الوحدة الثانية صفحة 19 و20 و21 داخل",
+        sure: "مرتضى ظافر"
       },
       exam: {
         title: "من البداية حتى صفحة 18 ما داخل",
