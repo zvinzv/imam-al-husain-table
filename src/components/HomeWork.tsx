@@ -20,7 +20,8 @@ function DrosTable(datas:any, day:number): any{
     <tr key={randomInt(100000)}>
         <td key={randomInt(100000)} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{drs[0]}</td>
         <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700">{drs[1]}</td>
-        {
+        <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700">{drs[2]}</td>
+        {/* {
         (drs[2] as string).length > 90 ?
         <td key={randomInt(100000)} 
         className="bg-stone-300 dark:bg-stone-500 p-1 text-center 
@@ -33,7 +34,7 @@ function DrosTable(datas:any, day:number): any{
                         hover:bg-stone-300 bg-stone-20 p-1 px-3 rounded 
                         transition-all whitespace-nowrap w-full text-center 
                         flex justify-center gap-3"/>
-          </td>}
+          </td>} */}
     </tr>
   )
   return x
