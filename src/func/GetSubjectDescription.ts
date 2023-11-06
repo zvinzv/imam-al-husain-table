@@ -40,22 +40,22 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
       },
       exam: {
         title: "الفصل الاول والثاني",
-        sure: "مدرس المادة"
+        sure: "مرتضى ظافر"
       }
     },
     physics: {
       homeWork: {
-        title: "تحضير قانون نيوتن الثاني",
+        title: "مراجعة الي اخذناه",
         sure: "مرتضى ظافر"
       },
       exam: {
-        title: "من البداية لحد ما نوصل",
+        title: "لم يحدد بعد",
         sure: ""
       }
     },
     chemistry: {
       homeWork: {
-        title: "تحضير الرينين",
+        title: "مراجعة الي اخذناه",
         sure: ""
       },
       exam: {
@@ -75,12 +75,12 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     pc: {
       homeWork: {
-        title: "الدرس الاول من الوحدة الثانية صفحة 19 و20 و21 داخل",
+        title: "امتحان شفوي من صفحة  19 الى صفحة 24",
         sure: "مرتضى ظافر"
       },
       exam: {
-        title: "من البداية حتى صفحة 18 ما داخل",
-        sure: "مدرس المادة"
+        title: "",
+        sure: ""
       }
     },
     earth: {
