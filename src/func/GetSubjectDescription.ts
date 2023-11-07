@@ -25,7 +25,8 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     english: {
       homeWork: {
-        title: "لا يوجد لدينا تحضير",
+        title: `في الدفتر: حل نشاط B, C, D, E, F صفحة 46 و47.
+        بل كتاب مدري بل دفتر: صفحة 41 كلها B والحقيبة و C صفحة 37`,
         sure: "مرتضى ظافر"
       },
       exam: {
