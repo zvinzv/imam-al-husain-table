@@ -122,7 +122,7 @@ export default async function Exam() {
         id:17,
         date:"2023-11-14",
         day:"الثلاثاء",
-        subject:"انكليزي",
+        subject:"راحة",
       },{
         id:18,
         date:"2023-11-15",
@@ -132,7 +132,7 @@ export default async function Exam() {
         id:19,
         date:"2023-11-16",
         day:"الخميس",
-        subject:"راحة",
+        subject:"انكليزي",
       },{
         id:20,
         date:"2023-11-17",
