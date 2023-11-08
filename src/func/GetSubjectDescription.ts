@@ -36,7 +36,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     math: {
       homeWork: {
-        title: "حفظ القوانين والجدول",
+        title: "ناخذ فصل على الاسئله الصعبة.",
         sure: "مرتضى ظافر هادي"
       },
       exam: {
@@ -86,7 +86,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     earth: {
       homeWork: {
-        title: "",
+        title: "الاحترار العالمي الى الكتل الهوائية ما داخل. من 16 الى 21  ما داخل",
         sure: ""
       },
       exam: {
