@@ -25,8 +25,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     english: {
       homeWork: {
-        title: `في الدفتر: حل نشاط B, C, D, E, F صفحة 46 و47.
-        بل كتاب مدري بل دفتر: صفحة 41 كلها B والحقيبة و C صفحة 37`,
+        title: `لا اعلم, سيتم النشر قريباً`,
         sure: "مرتضى ظافر"
       },
       exam: {
@@ -36,7 +35,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     math: {
       homeWork: {
-        title: "ناخذ فصل على الاسئله الصعبة.",
+        title: "مراجعة على الي اخذناه",
         sure: "مرتضى ظافر هادي"
       },
       exam: {
@@ -46,7 +45,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     physics: {
       homeWork: {
-        title: "مراجعة الي اخذناه",
+        title: "حفظ الي اخذناه",
         sure: "مرتضى ظافر"
       },
       exam: {
@@ -66,7 +65,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     biology: {
       homeWork: {
-        title: "تكملة من متطلبات الغذاء الى نهاية الفصل",
+        title: "تكملة من متطلبات الغذاء الى نهاية الفصل, وحل اسئله الفصل الاول",
         sure: ""
       },
       exam: {
@@ -86,7 +85,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     earth: {
       homeWork: {
-        title: "الاحترار العالمي الى الكتل الهوائية ما داخل. من 16 الى 21  ما داخل",
+        title: "من الكتل الهوائية الى الطقس القاسي ما داخل",
         sure: ""
       },
       exam: {
