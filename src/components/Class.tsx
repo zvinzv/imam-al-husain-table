@@ -48,16 +48,18 @@ export default async function Class() {
       .</h1>
       </div>
       <div className="max-w-lg mx-auto overflow-x-scroll sm:overflow-hidden">
-        <table className="table-auto w-full font-bold">
-          <thead>
-            <tr>
-              {["ت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"].map((H:string)=> <th key={H} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>)}
-            </tr>
-          </thead>
-          <tbody>
-            {[1,2,3,4,5].map(num => MakeTable(num, DateObject.toDayIs))}
-          </tbody>
-        </table>
+        <div className="m-2">
+          <table className="table-auto w-full font-bold">
+            <thead>
+              <tr>
+                {["ت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"].map((H:string)=> <th key={H} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {[1,2,3,4,5].map(num => MakeTable(num, DateObject.toDayIs))}
+            </tbody>
+          </table>
+        </div>
       </div>
       
       <div className="flex flex-col items-center mt-5 gap-2">

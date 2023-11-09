@@ -77,7 +77,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
+          name: 'مراجعة على الي اخذناه.',
           accessories: [
             {
               id:1, 
@@ -213,7 +213,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
+          name: 'لا اعلم, سيتم النشر قريباً.',
           accessories: [
             {
               id:1, 
@@ -278,7 +278,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
+          name: 'حفظ الي اخذناه.',
           accessories: [
             {
               id:1, 
@@ -390,7 +390,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
+          name: 'تكملة من متطلبات الغذاء الى نهاية الفصل, وحل اسئله الفصل الاول.',
           accessories: [
             {
               id:1, 
@@ -446,7 +446,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
+          name: 'من الكتل الهوائية الى الطقس القاسي ما داخل.',
           accessories: [
             {
               id:1, 

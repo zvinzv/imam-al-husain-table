@@ -38,3 +38,22 @@ body {
 .bbb:hover{
   background-size: 130%;
 }
+/* width */
+.menu::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+.menu::-webkit-scrollbar-track {
+  background:transparent;
+}
+
+/* Handle */
+.menu::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.menu::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

@@ -157,13 +157,6 @@ export default async function Exam() {
       D.done = true
     }
   })
-  let color = []
-  for (let i = 0; i > 10; i++) {
-    color.push("bg-red-300")
-    color.push("bg-red-300")
-    color.push("dark:bg-red-600/70")
-    color.push("dark:bg-red-600/70")
-  }
   return (
     <div>
       {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
@@ -209,7 +202,6 @@ export default async function Exam() {
           </tbody>
         </table>
       </div>
-      
       <div className="flex flex-col gap-3 items-center">
         <h1 className="text-md font-bold">اخر تحديث: 2023-11-08.</h1>
         <div className="mb-14">
