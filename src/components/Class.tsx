@@ -1,34 +1,32 @@
+
 import SendReq from "@/components/SendReq"
 import GetCorrectDate from "@/func/GetCorrectDate";
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
+import GetSubjectDescription, { Sub } from "@/func/GetSubjectDescription";
+import GetTheClassTable, {drsAndDay} from "@/func/GetTheClassTable";
 import SaveToCookies from "@/func/SaveToCookies";
+import getArabicDateByNewDateFunction from "@/func/function getArabicDateByNewDateFunction";
 import Image from "next/image";
+import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
-function getCurrentDate(props:string, ty:object) {
-  return new Date(props).toLocaleDateString("ar-IQ", ty);
+const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
+  return (
+    <tr>
+      <td key={DRS_NUMBER} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-fit">{DRS_NUMBER}</td>
+      <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 4 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 4)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 5 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 5)[0].subject.ar}</td>
+    </tr>
+  )
 }
-
 export default async function Class() {
-  const TelegramApiDate = await GetDateFromTelegram()
-  const data:{[key:string]:any} = {
-    head: ["الدرس", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"],
-    body: [["1","احياء", "كيمياء", "فيزياء", " احياء", " كيمياء"], ["2","فيزياء", "احياء", "انكليزي", "عربي", " عربي"], ["3","انكليزي", "فنية", "رياضيات", " انكليزي", " رياضيات"], ["4","رياضيات", "عربي", " عربي", "اسلامية", " اسلامية"], ["5","أرض", "فيزياء", "حاسوب", "رياضيات", " أرض"]],
-    date:{
-      fullDate: getCurrentDate(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}) === "Invalid Date" ? false : getCurrentDate(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'}),
-      day: getCurrentDate(TelegramApiDate.data, {weekday: 'long'}),
-      toDayHoliday: false,
-    }
+  const TelegramApiDate = await GetDateFromTelegram() 
+  const DateObject:{[key:string]:any} = {
+      toDayHoliday: getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}) === "Invalid Date" ? undefined : ["الجمعة", "السبت"].includes(getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long'})) ? true : false,
+      toDayIs: new Date(TelegramApiDate.data).getDay()+1,
   }
-  const setHoliday = (isHoliday:boolean) => {
-    for(let i in data.date){
-      if (data.date.fullDate == false) {
-        data.date.toDayHoliday = undefined
-      }
-    }
-  }
-  data.date.toDayHoliday =  data.date.toDayHoliday ? true : ["الجمعة", "السبت"].includes(data.date.day) ? true : false 
-  setHoliday(true)
-  
   return (
     <div>
       {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
@@ -36,71 +34,36 @@ export default async function Class() {
       <h1 className="text-3xl font-bold">جدول الدروس اليومية.</h1>
       <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
       <h1 className="text-xl font-bold dark:font-light mt-5">
-        {data.date.fullDate} {
-        data.date.toDayHoliday === true ? 
+        {getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})} {
+        DateObject.toDayHoliday === true ? 
         
           <span className="text-red-400">عطلة</span> 
         
         :
-        data.date.toDayHoliday === false ?
+        DateObject.toDayHoliday === false ?
           <span className="text-emerald-400">دوام رسمي</span>
           :
           <span className="text-stone-600 dark:text-stone-300">خلل في التاريخ</span>
         }
       .</h1>
       </div>
-      <div >
-        <h1 className="text-center text-3xl my-6">الجدول الجديد.</h1>
-        <a href="/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg" className="flex justify-center  ">
-          <div className="relative w-full max-w-lg aspect-square">
-            <Image src={"/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg"} alt="ss" fill className="object-contain"/>
-          </div>
-        </a>
-        <a href="/جدول-الدروس-اليومي-الخامس-الاعدادي-مدرسة-الامام-الحسين-علية-السلام.jpg" download className="flex items-center gap-2 mt-6 bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700 transition-all p-3 rounded w-fit mx-auto font-bold">تحميل الجدول على شكل صورة !</a>
-        <h1 className="text-center text-2xl my-6">الجدول القديم تحت الصيانة.</h1>
-        
-        {/* <table className="table-fixed m-2 mx-auto font-bold">
+      <div className="max-w-lg mx-auto overflow-x-scroll sm:overflow-hidden">
+        <table className="table-auto w-full font-bold">
           <thead>
             <tr>
-              {data.head.map((H:string)=> {
-                return(
-                  data.date.toDayHoliday === undefined ? <th key={data.head.indexOf(H)} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th> : <th key={data.head.indexOf(H)} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>
-                )
-              })}
+              {["ت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"].map((H:string)=> <th key={H} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>)}
             </tr>
           </thead>
           <tbody>
-          
-          {
-            data.body.map((B:string[]) => {
-              return(
-                <tr key={data.body.indexOf(B)}>
-                {B.map((T:string) => 
-                      +T > 0 && data.date.toDayHoliday === undefined ?         <td key={B.indexOf(T)} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{T}</td> 
-                      :
-                      +T > 0                               ?         <td key={B.indexOf(T)} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{T}</td> 
-                      : 
-                      data.date.toDayHoliday === undefined ?         <td key={B.indexOf(T)} className="bg-stone-100 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700">{T}</td> 
-                      :
-                      data.date.toDayHoliday === true      ?         <td key={B.indexOf(T)} className="bg-red-200/60 dark:bg-red-400/60 p-1 px-2 text-center border border-collapse border-stone-700">{T}</td> 
-                      :
-                      data.head.includes(data.date.day) && data.head.indexOf(data.date.day) && B.indexOf(T) > 0 && B.indexOf(T) === data.head.indexOf(data.date.day) ? <td key={B.indexOf(T)} className="bg-stone-200 dark:bg-emerald-500/70 animate-pulse p-1 px-2 text-center border border-collapse border-stone-700">{T}</td>
-                      : 
-                      <td key={B.indexOf(T)} className="bg-stone-100 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700">{T}</td>
-                  )
-                }
-                </tr>
-              )
-            })
-          }
+            {[1,2,3,4,5].map(num => MakeTable(num, DateObject.toDayIs))}
           </tbody>
-        </table> */}
+        </table>
       </div>
       
-      {/* <div className="flex flex-col items-center">
-        {data.date.toDayHoliday === undefined ? <SendReq key={1} secretId={"1145036551"} maxAge={5} err={true} msg={"طلب تصحيح التاريخ."} unieq="Class"/> : <SendReq key={2} secretId={"1145036551"} err={true} maxAge={10} msg={"طلب تعديل جديد."} unieq="Class"/>}
-        {data.date.toDayHoliday && <a href="" className="text-gray-500 w-fit  text-[.65rem]  underline md:hover:underline md:no-underline underline-offset-[5px] font-bold">رابط مصدر العطلة الرسمية.</a>}
-      </div> */}
+      <div className="flex flex-col items-center mt-5 gap-2">
+        {DateObject.toDayHoliday === undefined ? <SendReq key={1} secretId={"1145036551"} maxAge={5} err={true} msg={"طلب تصحيح التاريخ."} unieq="Class"/> : <SendReq key={2} secretId={"1145036551"} err={true} maxAge={10} msg={"طلب تعديل جديد للجدول الاسبوعي."} unieq="Class"/>}
+        {DateObject.toDayHoliday && <Link href="class/holiday" className="text-gray-500 w-fit  text-[.65rem] underline md:hover:underline md:no-underline underline-offset-[5px] font-bold">رابط مصدر العطلة الرسمية.</Link>}
+      </div>
     </div>
   )
 }

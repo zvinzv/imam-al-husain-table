@@ -30,3 +30,11 @@ body {
 .text_ar {
   font-family: var(--font-ar);
 }
+.bbb{
+  background: radial-gradient(circle at 20% 297%, #fdf497 0%, #fdf497 6%, #fd5949 45%,#d6249f 60%,#285AEB 110%);
+  background-size: 110%;
+}
+
+.bbb:hover{
+  background-size: 130%;
+}

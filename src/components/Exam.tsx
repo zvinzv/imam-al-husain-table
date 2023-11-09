@@ -122,7 +122,7 @@ export default async function Exam() {
         id:17,
         date:"2023-11-14",
         day:"الثلاثاء",
-        subject:"انكليزي",
+        subject:"راحة",
       },{
         id:18,
         date:"2023-11-15",
@@ -132,7 +132,7 @@ export default async function Exam() {
         id:19,
         date:"2023-11-16",
         day:"الخميس",
-        subject:"راحة",
+        subject:"انكليزي",
       },{
         id:20,
         date:"2023-11-17",
@@ -211,7 +211,7 @@ export default async function Exam() {
       </div>
       
       <div className="flex flex-col gap-3 items-center">
-        <h1 className="text-md font-bold">اخر تحديث: 2023-11-01.</h1>
+        <h1 className="text-md font-bold">اخر تحديث: 2023-11-08.</h1>
         <div className="mb-14">
         { <SendReq key={3} secretId={"1145036551"} err={true} maxAge={10} msg={"تصحيح جدول الامتحانات."} unieq="Exam"/>}
         </div>

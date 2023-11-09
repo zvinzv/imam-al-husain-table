@@ -25,7 +25,8 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     english: {
       homeWork: {
-        title: "لا يوجد لدينا تحضير",
+        title: `في الدفتر: حل نشاط B, C, D, E, F صفحة 46 و47.
+        بل كتاب مدري بل دفتر: صفحة 41 كلها B والحقيبة و C صفحة 37`,
         sure: "مرتضى ظافر"
       },
       exam: {
@@ -35,27 +36,27 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     math: {
       homeWork: {
-        title: "حفظ القوانين والجدول",
+        title: "ناخذ فصل على الاسئله الصعبة.",
         sure: "مرتضى ظافر هادي"
       },
       exam: {
         title: "الفصل الاول والثاني",
-        sure: "مدرس المادة"
+        sure: "مرتضى ظافر"
       }
     },
     physics: {
       homeWork: {
-        title: "تحضير قانون نيوتن الثاني",
+        title: "مراجعة الي اخذناه",
         sure: "مرتضى ظافر"
       },
       exam: {
-        title: "من البداية لحد ما نوصل",
+        title: "لم يحدد بعد",
         sure: ""
       }
     },
     chemistry: {
       homeWork: {
-        title: "تحضير الرينين",
+        title: "مراجعة الي اخذناه",
         sure: ""
       },
       exam: {
@@ -75,17 +76,17 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
     },
     pc: {
       homeWork: {
-        title: "",
-        sure: ""
+        title: "امتحان شفوي من صفحة  19 الى صفحة 24",
+        sure: "مرتضى ظافر"
       },
       exam: {
-        title: "من البداية حتى صفحة 18 ما داخل",
-        sure: "مدرس المادة"
+        title: "",
+        sure: ""
       }
     },
     earth: {
       homeWork: {
-        title: "",
+        title: "الاحترار العالمي الى الكتل الهوائية ما داخل. من 16 الى 21  ما داخل",
         sure: ""
       },
       exam: {

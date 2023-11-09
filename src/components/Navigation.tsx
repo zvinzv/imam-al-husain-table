@@ -16,7 +16,7 @@ const Navigation = () => {
               <Link href={"/class"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all tracking-wider  whitespace-nowrap w-full text-center">الدروس اليومية</Link>
               <Link href={"/exam"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all  tracking-wider whitespace-nowrap w-full text-center">الامتحانات الشهرية</Link>
             </ul>
-          <div onClick={() => isOpen ? setOpen(false) : null} style={{"backgroundColor" : isOpen ? "rgba(0,0,0,.5)" : "", "pointerEvents" : isOpen ? "auto" : "none"}} className="fixed z-10 h-screen min-w-full transition-all top-0 left-0"></div>
+          <div onClick={() => isOpen ? setOpen(false) : null} style={{"backgroundColor" : isOpen ? "rgba(0,0,0,.5)" : "", "pointerEvents" : isOpen ? "auto" : "none"}} className="fixed z-10 h-screen w-full transition-all top-0 left-0"></div>
           <div dir="ltr" className="text_en flex flex-col gap-1">
             <h1 className="text-2xl font-semibold leading-none ml-1">ZVINZV</h1>
           </div>
