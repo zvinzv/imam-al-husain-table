@@ -253,14 +253,6 @@ export default function GetTheClassTable(): Table  {
       day: [
         {
           name: {
-            ar: "الاحد",
-            en: "sunday"
-          },
-          number: 1,
-          drs: 5
-        },
-        {
-          name: {
             ar: "الاثنين",
             en: "monday"
           },
@@ -637,6 +629,54 @@ export default function GetTheClassTable(): Table  {
       }
     },
     // End Paint
+    // Start Arabic
+    {
+      id: 12,
+      subject: {
+        ar: "رياضة",
+        en: "sport"
+      },
+      day: [
+        {
+          name: {
+            ar: "الاحد",
+            en: "sunday"
+          },
+          number: 1,
+          drs: 5
+        },
+      ],
+      dailyPreparation: {
+          name: "يعني رياضة يعني شتريد مثلا,",
+          accessories: [
+            {
+              id:1, 
+              file: [], 
+              description: [], 
+              sure: {
+                name: "", 
+                logic: false
+              }
+            }
+          ]
+      },
+
+      examPreparation: {
+          name: "",
+          accessories: [
+            {
+              id:1, 
+              file: [""],
+              description: [""],
+              sure: {
+                name: "", 
+                logic: false
+              }
+            }
+          ]
+      }
+    },
+    // End Arabic
   ]
 }
 export function drsAndDay(drs:number, dayNumber: number) {

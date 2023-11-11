@@ -21,9 +21,9 @@ const MakeTable = (TO_DAY_AS_NUMBER:number) => {
     if ((TO_DAY_AS_NUMBER > 5 || TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1)  TO_DAY_AS_NUMBER = 1
     return (
       <tr key={randomInt(100000)}>
-          <td key={randomInt(100000)} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
-          <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-          <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
+          <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
           {/* {
           (drs[2] as string).length > 90 ?
           <td key={randomInt(100000)} 
@@ -59,7 +59,7 @@ export default async function HomeWork() {
           <table className="table-auto w-full font-bold">
             <thead>
               <tr>
-                {["ت", "المادة", "التحضير"].map((head:string) => <th className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
+                {["ت", "المادة", "التحضير"].map((head:string) => <th key={head} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
               </tr>
             </thead>
             <tbody>
