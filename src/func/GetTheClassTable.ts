@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'الفصل الثاني - من البداية حتى تنفس النباتات ما داخل, حل اسئلة الفصل الاول.',
+        name: 'الفصل الثاني - من البداية حتى تنفس النباتات داخل, حل اسئلة الفصل الاول.',
         accessories: [
           {
             id: 1,
