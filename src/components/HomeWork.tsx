@@ -9,12 +9,12 @@ import { drsAndDay } from "@/func/GetTheClassTable";
 
 function  ThisTableForAnyDayOfWeek(dayAsNumberOfWeek:number) {
   // I clarify to the student this table for any day of week
-  let script = ["هذا الجدول ليوم الاحد", "هذا الجدول ليوم الاثنين", "هذا الجدول ليوم الثلاثاء", "هذا الجدول ليوم الاربعاء", "هذا الجدول ليوم الخميس"]
+  const script = ["هذا الجدول ليوم الاحد", "هذا الجدول ليوم الاثنين", "هذا الجدول ليوم الثلاثاء", "هذا الجدول ليوم الاربعاء", "هذا الجدول ليوم الخميس"]
   if(dayAsNumberOfWeek < 6) return script[dayAsNumberOfWeek-1]
   return script[0]
 }
 const MakeTable = (TO_DAY_AS_NUMBER:number) => {
-  let x: JSX.Element[] = [...Array.from(Array(6).keys())].splice(1,).map(num => {
+  const x: JSX.Element[] = [...Array.from(Array(6).keys())].splice(1,).map(num => {
     if ((TO_DAY_AS_NUMBER > 5 && TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1) TO_DAY_AS_NUMBER = 1
     return (
       <tr key={TO_DAY_AS_NUMBER+randomInt(100000)}>
@@ -41,8 +41,8 @@ const MakeTable = (TO_DAY_AS_NUMBER:number) => {
   return x
 }
 export default async function HomeWork() {
-  let TelegramApiDate: {data: string, setted: boolean} = await GetDateFromTelegram() as {data: string, setted: boolean}
-  let toDayIs = new Date(TelegramApiDate.data).getDay()+1
+  const TelegramApiDate: {data: string, setted: boolean} = await GetDateFromTelegram() as {data: string, setted: boolean}
+  const toDayIs = new Date(TelegramApiDate.data).getDay()+1
   return (
     <div>
       {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}

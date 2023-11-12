@@ -1,23 +1,13 @@
 "use client"
-import { useState, useRef, useEffect } from "react";
-import { setCookie,getCookie,deleteCookie } from "cookies-next";
+import { useState, useRef } from "react";
+import { setCookie,getCookie } from "cookies-next";
 import "remixicon/fonts/remixicon.css"
 
 const SendReq = ({title="طلب اعادة النظر أو تعديل الجدول.", secretId, maxAge, err=false, msg, unieq, style}:{title?:string, secretId:string, maxAge?:number, err?:boolean, msg?:string, unieq:string, style?:string}) => {
   const [loading, setLoading] = useState(false);
   const [isDone, setDone] = useState<number|null>()
-  let color = []
-  for (let i = 0; i > 10; i++) {
-    color.push("bg-stone-300")
-    color.push("bg-slate-300")
-    color.push("dark:bg-stone-600")
-    color.push("dark:bg-slate-600")
-    color.push("dark:hover:bg-stone-500")
-    color.push("dark:hover:bg-slate-500")
-    color.push("hover:bg-stone-400")
-    color.push("hover:bg-slate-400")
-  }
-  const timerId:any = useRef<NodeJS.Timeout>(null); // استخدم useRef لتخزين معرف العداد التنازلي
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const timerId: any = useRef<NodeJS.Timeout>(null); // استخدم useRef لتخزين معرف العداد التنازلي
   const handleClick = async () => {
     
       setLoading(true);

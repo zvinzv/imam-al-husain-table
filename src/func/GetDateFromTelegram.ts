@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
-export default async function GetDateFromTelegram(offset?:string){
-  let cook = cookies().get("DateFromTelegarm")
+export default async function GetDateFromTelegram(){
+  const cook = cookies().get("DateFromTelegarm")
   if (cook?.name !== "DateFromTelegarm") {
     try {
       const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/getUpdates?offset=-1", {

@@ -773,12 +773,12 @@ export default function GetTheClassTable(): Table  {
 }
 export function drsAndDay(drs:number, dayNumber: number) {
   const table = GetTheClassTable()
-  let list = table.filter(subject => subject.day.some(das => das.drs === drs && das.number === dayNumber))
+  const list = table.filter(subject => subject.day.some(das => das.drs === drs && das.number === dayNumber))
   return list
 }
 export function subjectName(enNameSubject?:string, arNameSubject?:string) {
   const table = GetTheClassTable()
-  let list = table.filter(subject => subject.subject.ar === arNameSubject || subject.subject.en === enNameSubject)
+  const list = table.filter(subject => subject.subject.ar === arNameSubject || subject.subject.en === enNameSubject)
   return list
   
 }

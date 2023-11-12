@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lints": "eslint ./src/app"
+    "lints": "eslint ./src/**/*.{ts,tsx,js,jsx}"
   },
   "dependencies": {
     "cookies-next": "^4.0.0",

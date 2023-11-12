@@ -2,8 +2,6 @@ import SendReq from "@/components/SendReq"
 import GetCorrectDate from "@/func/GetCorrectDate"
 import GetDateFromTelegram from "@/func/GetDateFromTelegram"
 import SaveToCookies from "@/func/SaveToCookies"
-import { Metadata } from "next"
-import { cookies } from "next/headers"
 import 'remixicon/fonts/remixicon.css'
 
 type Exam ={ 

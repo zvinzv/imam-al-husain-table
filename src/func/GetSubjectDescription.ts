@@ -12,7 +12,7 @@ export type Subjects = {
   [K in "arabic" | "english" | "math"| "physics" | "chemistry" | "biology" | "pc" | "earth" | "islamic" | "paint"]: Sub
 }
 export default function GetSubjectDescription(subject: "arabic" | "english" | "math"| "physics" | "chemistry" | "biology" | "pc" | "earth" | "islamic" | "paint"): Subjects | Sub | undefined{
-  let subjects: Subjects = {
+  const subjects: Subjects = {
     arabic: {
       homeWork: {
         title: "لا يوجد لدينا واجب",
@@ -114,7 +114,7 @@ export default function GetSubjectDescription(subject: "arabic" | "english" | "m
       }
     }
   }
-  for (let i in subjects) {
+  for (const i in subjects) {
     if (i === subject) {
       return subjects[subject] as Sub
     }

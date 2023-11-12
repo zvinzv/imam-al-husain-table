@@ -1,4 +1,8 @@
-
+import { Metadata } from "next"
+export const metadata: Metadata = {
+  title: 'الاخبار.',
+  description: 'هذه الصفحة تحتوي على آخر الاخبار على الموقع.',
+}
 function f(){
   return(
     <div className='flex justify-center'>

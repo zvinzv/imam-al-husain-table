@@ -1,12 +1,8 @@
-
 import SendReq from "@/components/SendReq"
-import GetCorrectDate from "@/func/GetCorrectDate";
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
-import GetSubjectDescription, { Sub } from "@/func/GetSubjectDescription";
-import GetTheClassTable, {drsAndDay} from "@/func/GetTheClassTable";
+import {drsAndDay} from "@/func/GetTheClassTable";
 import SaveToCookies from "@/func/SaveToCookies";
 import getArabicDateByNewDateFunction from "@/func/function getArabicDateByNewDateFunction";
-import Image from "next/image";
 import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
@@ -23,7 +19,7 @@ const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
 }
 export default async function Class() {
   const TelegramApiDate = await GetDateFromTelegram() 
-  const DateObject:{[key:string]:any} = {
+  const DateObject:{toDayHoliday: boolean | undefined, toDayIs: number} = {
       toDayHoliday: getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}) === "Invalid Date" ? undefined : ["الجمعة", "السبت"].includes(getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long'})) ? true : false,
       toDayIs: new Date(TelegramApiDate.data).getDay()+1,
   }
