@@ -2,13 +2,16 @@
 import { useState, useRef } from "react";
 import { setCookie,getCookie } from "cookies-next";
 import "remixicon/fonts/remixicon.css"
-
 const SendReq = ({title="طلب اعادة النظر أو تعديل الجدول.", secretId, maxAge, err=false, msg, unieq, style}:{title?:string, secretId:string, maxAge?:number, err?:boolean, msg?:string, unieq:string, style?:string}) => {
   const [loading, setLoading] = useState(false);
   const [isDone, setDone] = useState<number|null>()
+  const [popUp, setPopUp] = useState<boolean>(false)
+  const [errs, setErr] = useState<{logic: false, fInput:"", lInput:""} | {logic: true, fInput?:string, lInput?:string}>({logic:false, fInput: "", lInput: ""})
+  const userInput = useRef<HTMLInputElement>(null)
+  const userInput2 = useRef<HTMLTextAreaElement>(null)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const timerId: any = useRef<NodeJS.Timeout>(null); // استخدم useRef لتخزين معرف العداد التنازلي
-  const handleClick = async () => {
+  const handleClick = async (LongMsg:string) => {
     
       setLoading(true);
       setDone(null);
@@ -20,7 +23,7 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
       
       if (getCookie("SendRequestFaild"+unieq) !== "true" && loading !== true) {
         try {
-            const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secretId+`&text=${msg ? msg : "طلب تصحيح التاريخ."}`);
+            const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secretId+`&text=${LongMsg ? LongMsg : msg ? msg : "طلب تصحيح التاريخ."}`);
             const todos = await response.json();
             if (todos.ok) {
               setDone(1);
@@ -52,14 +55,43 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
     <>
       <form onSubmit={e => {
         e.preventDefault();
-        handleClick();
-        return;
-      }}>
-
+        }}>
+        <div style={{"opacity": popUp ? "1" : "0", "pointerEvents" : popUp ? "auto" : "none"}} className="transition-all fixed bg-stone-800/80 w-full h-full top-0 left-0 grid place-content-center">
+          <div className="bg-stone-700 flex flex-col p-3 rounded gap-2 font-bold ">
+            <label htmlFor="explain" className="text-xl my-2">ما سبب طلبك ؟</label>
+            <input ref={userInput} type="text" id="explain" className="text-black outline-none border-none p-2 px-3 rounded" placeholder="عنوان الطلب"/>
+            {errs.fInput === "ff" && "املاء الصندوق"}
+            <textarea ref={userInput2} id=""  className="max-h-60 text-black outline-none border-none p-2 px-3 rounded" placeholder="تفاصيل المشكلة او الطلب"/>
+            {errs.lInput === "dd" && "املاء الصندوق"}
+            <div className="flex gap-2">
+              <button className="bg-stone-500 hover:bg-stone-600 rounded p-2 flex-grow" onClick={() => {
+                if (userInput.current?.value !== "" && userInput2.current?.value !== "") {
+                  handleClick(`${userInput.current?.value}, ${userInput2.current?.value}`)
+                  setErr({logic: false, fInput: "", lInput: ""})
+                  if (userInput.current !== null) userInput.current.value = ""
+                  if (userInput2.current !== null) userInput2.current.value = ""
+                  return setPopUp(false)
+                }
+                else if (userInput.current?.value === "" && userInput2.current?.value === "") {
+                  return setErr({fInput: "ff", lInput: "dd",logic: true})
+                }
+                else if (userInput.current?.value === ""){
+                  return setErr({fInput: "ff",logic: true})
+                }
+                else if (userInput2.current?.value === ""){
+                  return setErr({logic: true, lInput: "dd"})
+                }
+                //  ?  : userInput.current?.value === "" && userInput.current?.value === "" ? setErr({fInput: "ff", lInput:"dd", logic: true}) : userInput.current?.value === "" ? setErr({fInput: "ff", lInput: "", logic: true}) : userInput2.current?.value === "" ? setErr({fInput: "",lInput:"dd", logic: true}) : null; errs.logic === false ? setPopUp(false) : null
+              }} >أرسال</button>
+              <button className="bg-red-500 hover:bg-red-600 rounded p-2" onClick={() => {setPopUp(false); setErr({logic: false, fInput: "", lInput: ""})}} >الغاء الطلب</button>
+            </div>
+          </div>
+        </div>
+        
         {loading ? 
-            <button type="submit" className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
+            <button className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
           : 
-            <button type="submit" className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i>{title}</button>
+            <button onClick={() => setPopUp(prev => !prev)} className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i>{title}</button>
         }
         
         {   isDone === 1 ?

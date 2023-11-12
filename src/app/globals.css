@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200&family=Montserrat:wght@300;500;700&family=Open+Sans:wght@400;500;600&display=swap');
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 @tailwind base;
 @tailwind components;
@@ -22,12 +23,12 @@ body {
   overflow-x: hidden;
 }
 .text_en {
-  font-family: var(--font-en) ;
+  font-family: 'Montserrat', sans-serif;
+}
+.text_ar {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
 }
 
-.text_ar {
-  font-family: var(--font-ar);
-}
 .bbb{
   background: radial-gradient(circle at 20% 297%, #fdf497 0%, #fdf497 6%, #fd5949 45%,#d6249f 60%,#285AEB 110%);
   background-size: 110%;
