@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lints": "eslint ./src/app"
   },
   "dependencies": {
     "cookies-next": "^4.0.0",
@@ -18,7 +19,10 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
     "autoprefixer": "^10",
+    "eslint": "^8.53.0",
     "postcss": "^8",
     "remixicon": "^3.5.0",
     "tailwindcss": "^3",

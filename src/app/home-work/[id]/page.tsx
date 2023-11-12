@@ -1,6 +1,6 @@
 import SendReq from "@/components/SendReq"
 import GetArabicSubjectFromEnglish from "@/func/GetArabicSubjectFromEnglish"
-import GetSubjectDescription, { Sub } from "@/func/GetSubjectDescription"
+import { Table, subjectName } from "@/func/GetTheClassTable"
 import { Metadata} from "next"
 import Link from "next/link"
 import 'remixicon/fonts/remixicon.css'
@@ -19,21 +19,21 @@ function Card({subject, title, content, sureMsg, icon="ri-book-fill"}:{subject:s
       <div className="text-sm space-y-1 py-2">
       
       {sureMsg ? <span className="text-base text-emerald-400 text-right flex justify-start px-3">حالة التحقق: تم التحقق بواسطة {sureMsg}.</span> : <span className="text-base animate-pulse">حالة التحقق: لا يزال التحقق جاري.</span>}
-      {sureMsg ? "" : <SendReq title="طلب التأكيد مرة اخرى." secretId="1145036551" unieq={`NeedAuth${icon}`} msg={`طلب تاكيد ${title.split(".")[0]} لمادة ال${GetArabicSubjectFromEnglish(subject)}.`} maxAge={30} err={true}/>}
+      {sureMsg ? null : <SendReq title="طلب التأكد مرة اخرى." secretId="1145036551" unieq={`NeedAuth${icon}`} msg={`طلب تاكيد ${title.split(".")[0]} لمادة ال${GetArabicSubjectFromEnglish(subject)}.`} maxAge={30} err={true}/>}
       </div>
     </div>
   )
 }
-export default function page({params}:{params: {id: "biology" | "chemistry" | "physics" | "arabic" | "math" | "english" | "paint" | "islamic" | "earth" | "pc"}}) {
-  let subject: Sub = GetSubjectDescription(params.id) as Sub
+export default function page({params}:{params: {id: "biology" | "chemistry" | "physics" | "arabic" | "math" | "english" | "paint" | "islamic" | "earth" | "pc" | "عربي"}}) {
+  const subject: Table = subjectName(params.id) as Table
   
   return (
     <>
-      {subject ? 
+      {subject.length > 0 ? 
       (<div className="text_en capitalize w-[20rem] mx-auto text-center my-6 text-3xl text_ar">
         <h1 className="font-bold">تفاصيل مادة ال{GetArabicSubjectFromEnglish(params.id)}.</h1>
-        <Card key={1} subject={params.id} title="التحضير اليومي." content={`${subject.homeWork.title}.`} sureMsg={`${subject.homeWork.sure}`} icon="ri-book-fill"/>
-        <Card key={2} subject={params.id} title="الامتحان الشهري." content={`${subject.exam.title}.`} sureMsg={`${subject.exam.sure}`} icon="ri-book-open-fill"/>
+        <Card key={1} subject={params.id} title="التحضير اليومي." content={`${subject[0].dailyPreparation.name}.`} sureMsg={subject[0].dailyPreparation.sure.name} icon="ri-book-fill"/>
+        <Card key={2} subject={params.id} title="الامتحان الشهري." content={`${subject[0].examPreparation.name}.`} sureMsg={subject[0].examPreparation.sure.name} icon="ri-book-open-fill"/>
       </div>)
       :
       (<h1 className="text-center my-12 text-3xl font-bold">لا توجد هكذا مادة !!</h1>)

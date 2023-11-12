@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import { IBM_Plex_Sans_Arabic, Montserrat } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'

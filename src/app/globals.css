@@ -57,3 +57,17 @@ body {
 .menu::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.dot{
+  position: relative;
+  width: fit-content;
+}
+.dot::before, .dot::after{
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: -15px;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  background-color: red;
+}

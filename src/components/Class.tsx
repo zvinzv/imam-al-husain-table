@@ -11,8 +11,8 @@ import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
   return (
-    <tr>
-      <td key={DRS_NUMBER} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-fit">{DRS_NUMBER}</td>
+    <tr  key={DRS_NUMBER}>
+      <td className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-fit">{DRS_NUMBER}</td>
       <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
       <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
       <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
@@ -33,7 +33,7 @@ export default async function Class() {
       <div className="mx-auto w-fit text-center mt-6">
       <h1 className="text-3xl font-bold">جدول الدروس اليومية.</h1>
       <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
-      <h1 className="text-xl font-bold dark:font-light mt-5">
+      <h1 className={`text-xl font-bold dark:font-light mt-5 mx-auto dot after:animate-ping ${ DateObject.toDayHoliday === false ? "before:bg-emerald-400 after:bg-emerald-400" : DateObject.toDayHoliday === true ? "before:bg-red-600 after:bg-red-600" : "before:bg-stone-400 after:bg-stone-400"}`}>
         {getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})} {
         DateObject.toDayHoliday === true ? 
         

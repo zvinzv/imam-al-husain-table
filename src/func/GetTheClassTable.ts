@@ -1,5 +1,9 @@
 type Preparation = {
   name: string;
+  sure: {
+    name: string, 
+    logic: boolean
+  }
   accessories: [
     {
       id:number, 
@@ -12,7 +16,7 @@ type Preparation = {
     }
   ];
 };
-type Table = {
+export type Table = {
   id: number;
   subject: {
     ar: string,
@@ -77,33 +81,41 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'مراجعة على الي اخذناه.',
-          accessories: [
-            {
-              id:1, 
-              file: [""], 
-              description: [""], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'مراجعة على الي اخذناه.',
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Math
@@ -149,33 +161,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'ادب: من الوحدة الرابعة الى عبد الحميد الكاتب  ما داخل, قواعد: حل تمارين النعت.',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "مرتضى ظافر",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الثاني - لم يحدد",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Arabic
@@ -213,33 +233,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'لا اعلم, سيتم النشر قريباً.',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'P.46 B C Dو P.47 E Fو انشاء عن الانترنيت مدري عن الهاتف',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "مصطفى نسيم",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - لم يحدد بعد",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End English
@@ -279,6 +307,10 @@ export default function GetTheClassTable(): Table  {
       ],
       dailyPreparation: {
           name: 'حفظ الي اخذناه.',
+          sure: {
+            name: "", 
+            logic: false
+          },
           accessories: [
             {
               id:1, 
@@ -294,6 +326,10 @@ export default function GetTheClassTable(): Table  {
 
       examPreparation: {
           name: "امتحان الشهر الاول - فصل الاول والثاني",
+          sure: {
+            name: "", 
+            logic: false
+          },
           accessories: [
             {
               id:1, 
@@ -334,33 +370,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'حل تمارين',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Chemistry
@@ -390,33 +434,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'تكملة من متطلبات الغذاء الى نهاية الفصل, وحل اسئله الفصل الاول.',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'تكملة من متطلبات الغذاء الى نهاية الفصل, وحل اسئله الفصل الاول.',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "مرتضى ظافر",
+          logic: false
+        }
       }
     },
     // End Biology
@@ -446,33 +498,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'من الكتل الهوائية الى الطقس القاسي ما داخل.',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'من الكتل الهوائية الى الطقس القاسي ما داخل.',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Earth
@@ -503,33 +563,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'حل تمارين',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Islamic
@@ -559,33 +627,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'حل تمارين',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Pc
@@ -607,33 +683,41 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: 'حل تمارين',
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: 'حل تمارين',
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
     // End Paint
@@ -643,4 +727,10 @@ export function drsAndDay(drs:number, dayNumber: number) {
   const table = GetTheClassTable()
   let list = table.filter(subject => subject.day.some(das => das.drs === drs && das.number === dayNumber))
   return list
+}
+export function subjectName(enNameSubject?:string, arNameSubject?:string) {
+  const table = GetTheClassTable()
+  let list = table.filter(subject => subject.subject.ar === arNameSubject || subject.subject.en === enNameSubject)
+  return list
+  
 }
