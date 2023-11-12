@@ -162,7 +162,7 @@ export default async function Exam() {
       {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
       <div className="mx-auto w-fit text-center mt-6">
       <h1 className="text-3xl font-bold">جدول الامتحانات الشهرية.</h1>
-      <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي.</h1>
+      <h1 className="text-lg font-bold dark:font-light mt-1">للصف الخامس الاعدادي.</h1>
       </div>
       <div >
         <table className="table-fixed m-2 mx-auto font-bold">
@@ -204,7 +204,7 @@ export default async function Exam() {
       </div>
       <div className="flex flex-col gap-3 items-center">
         <h1 className="text-md font-bold">اخر تحديث: 2023-11-08.</h1>
-        <div className="mb-14">
+        <div className="mb-5">
         { <SendReq key={3} secretId={"1145036551"} err={true} maxAge={10} msg={"تصحيح جدول الامتحانات."} unieq="Exam"/>}
         </div>
       </div>

@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'ادب: من الوحدة الرابعة الى عبد الحميد الكاتب  ما داخل, قواعد: حل تمارين النعت.',
+        name: `ادب: من الوحدة الرابعة الى عبد الحميد الكاتب  ما داخل.`,
         accessories: [
           {
             id: 1,
@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'حفظ الي اخذناه.',
+          name: 'تحضير نيوتن الثالث.',
           sure: {
             name: "", 
             logic: false
@@ -362,7 +362,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حل تمارين',
+        name: 'حفظ الي اخذناه, ويفضل قرائة التهجين (غير مجبور ان تقراه).',
         accessories: [
           {
             id: 1,
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'تكملة من متطلبات الغذاء الى نهاية الفصل, وحل اسئله الفصل الاول.',
+        name: 'الفصل الثاني - من البداية حتى تنفس النباتات ما داخل, حل اسئلة الفصل الاول.',
         accessories: [
           {
             id: 1,
@@ -619,7 +619,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حل تمارين',
+        name: 'الفصل الثاني - الدرس الاول - اكسل - 28 و29 و30 و31.',
         accessories: [
           {
             id: 1,
@@ -713,7 +713,7 @@ export default function GetTheClassTable(): Table  {
       }
     },
     // End Paint
-    // Start Arabic
+    // Start sport
     {
       id: 12,
       subject: {
@@ -731,36 +731,44 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-          name: "يعني رياضة يعني شتريد مثلا,",
-          accessories: [
-            {
-              id:1, 
-              file: [], 
-              description: [], 
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "يعني رياضة يعني شتريد مثلا,",
+        accessories: [
+          {
+            id: 1,
+            file: [],
+            description: [],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       },
 
       examPreparation: {
-          name: "",
-          accessories: [
-            {
-              id:1, 
-              file: [""],
-              description: [""],
-              sure: {
-                name: "", 
-                logic: false
-              }
+        name: "",
+        accessories: [
+          {
+            id: 1,
+            file: [""],
+            description: [""],
+            sure: {
+              name: "",
+              logic: false
             }
-          ]
+          }
+        ],
+        sure: {
+          name: "",
+          logic: false
+        }
       }
     },
-    // End Arabic
+    // End sport
   ]
 }
 export function drsAndDay(drs:number, dayNumber: number) {

@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  box-sizing: border-box;
-}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
@@ -41,6 +38,8 @@ body {
 /* width */
 .menu::-webkit-scrollbar {
   width: 2px;
+  height: 2px;
+  border-radius: 100%;
 }
 
 /* Track */
@@ -70,4 +69,24 @@ body {
   height: 10px;
   width: 10px;
   background-color: red;
+}
+
+.arrow:after{
+  content: '';
+  z-index: 9999;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -17px;
+  border: 10px solid;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+}
+
+.m{
+  height: 100vh;
+  display: grid;
+  gap: 20px;
+  grid-template-rows: auto 1fr auto;
 }

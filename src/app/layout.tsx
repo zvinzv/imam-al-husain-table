@@ -10,8 +10,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="ar" dir='rtl'>
       <body className={`${inter2.variable} ${inter.variable}`}>
         <div className='text_ar'>
-        <Navigation />
-        {children}
+        <Navigation> 
+          {children}
+        </Navigation>
         </div>
       </body>
     </html>

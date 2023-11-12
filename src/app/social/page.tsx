@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 }
 export default function page() {
   return (
-    <div className='mt-10'>
+    <div className='mt-10 mx-5'>
       <h1 className='text-center text-2xl'>تواصل مع المطور على المواقع التالية</h1>
       <div className='flex flex-row gap-3 max-w-lg mx-auto mt-5'>
         <a href="http://t.me/ZVINZV" className='flex items-center flex-grow gap-3 bg-sky-600 hover:bg-sky-500 transition-all p-3 px-4 rounded-lg' target='_blank'>

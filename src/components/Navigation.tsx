@@ -1,29 +1,29 @@
-"use client"
 import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
-import { useState } from "react";
-const Navigation = () => {
-  const [isOpen, setOpen] = useState(false)
+import {data} from "./NavigationJSON"
+const Navigation = ({children}: {children: React.ReactNode}) => {
   return (
     
-    <>  
-      <nav className={` bg-stone-400 h-16 w-full max-w-lg mx-auto flex justify-between items-center dark:bg-stone-700 rounded-xl mt-3 p-3 z-50`}>
-
-          <i onClick={() => setOpen(true)} className="ri-menu-line group/icon font-bold cursor-pointer dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded-lg transition-all">
-          </i>
-          <ul style={{"opacity": isOpen ? "100" : "0", "height": isOpen ? "220px" : "0", "backgroundColor" : isOpen ? "rgb(68 64 60)" : "rgba(0,0,0,0)", "padding" : isOpen ? "0.75rem" : "0", "pointerEvents" : isOpen ? "auto" : "none"}} className="text_ar z-20 flex flex-col items-center bg-stone-700 justify-between gap-3 absolute mt-16 top-0 -mr-3 rounded-lg opacity-0  h-0 transition-all">
-              <Link href={"/home-work"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all tracking-wider  whitespace-nowrap w-full text-center">التحاضير اليومية</Link>
-              <Link href={"/class"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all tracking-wider  whitespace-nowrap w-full text-center">الدروس اليومية</Link>
-              <Link href={"/exam"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all  tracking-wider whitespace-nowrap w-full text-center">الامتحانات الشهرية</Link>
-              <Link href={"/social"} onClick={() => setOpen(false)} className="font-bold dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 p-2 px-3 rounded transition-all  tracking-wider whitespace-nowrap w-full text-center">تواصل معي</Link>
+    <div className="m">  
+      <div className="mx-2">
+        <nav className={` bg-stone-400 h-16 w-full max-w-lg mx-auto flex justify-center items-center dark:bg-stone-700 rounded-xl mt-3 p-3 z-50`}>
+            <div dir="ltr" className="text_en flex flex-col justify-center items-center gap-1">
+              <h1 className="text-4xl font-extrabold leading-none ml-1">ZVINZV</h1>
+            </div>
+        </nav>
+      </div>
+      <div>
+        {children}
+      </div>
+      <div className='z-10 w-full grid place-items-center '>
+        <nav className={` flex justify-center items-center w-fit mx-5 mb-5 rounded-xl p-3  bg-stone-400 dark:bg-stone-700 `}>
+            <ul className="text_en text-2xl flex justify-between items-center gap-3 w-fit menu rounded-lg flex-wrap">
+              
+              {data.map(i => <Link key={i.id} href={i.href} className=" dark:hover:bg-stone-600 dark:bg-stone-500 hover:bg-stone-300 bg-stone-200 aspect-square p-3 leading-none rounded-xl transition-all relative group/icon"><i className={i.icon}></i><span className="absolute top-0 left-0 text_ar text-sm text-white font-bold bg-stone-500 whitespace-nowrap block px-3 py-3 leading-3 rounded-md right-1/2 translate-x-1/2 w-fit -translate-y-12 arrow after:border-t-stone-500 opacity-0 pointer-events-none group-hover/icon:pointer-events-auto group-hover/icon:opacity-100 transition-all">{i.text}</span></Link>)}
             </ul>
-          <div onClick={() => isOpen ? setOpen(false) : null} style={{"backgroundColor" : isOpen ? "rgba(0,0,0,.5)" : "", "pointerEvents" : isOpen ? "auto" : "none"}} className="fixed z-10 h-screen w-full transition-all top-0 left-0"></div>
-          <div dir="ltr" className="text_en flex flex-col gap-1">
-            <h1 className="text-2xl font-semibold leading-none ml-1">ZVINZV</h1>
-          </div>
-          
-      </nav>
-    </>
+        </nav>
+      </div>
+    </div>
   );
 };
 

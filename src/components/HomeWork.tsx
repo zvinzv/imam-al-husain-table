@@ -1,11 +1,8 @@
-import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
 import SendReq from "@/components/SendReq"
 import GetCorrectDate from "@/func/GetCorrectDate";
 import GetCurrentTimeArabicWithStyle from "@/func/GetCurrentTimeArabicWithStyle";
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
-import GetEnglishSubjectAsArabic from "@/func/GetEnglishSubjectAsArabic";
-import GetSubjectDescription, { Sub } from "@/func/GetSubjectDescription";
 import { randomInt } from "crypto";
 import SaveToCookies from "@/func/SaveToCookies";
 import { drsAndDay } from "@/func/GetTheClassTable";
@@ -18,9 +15,9 @@ function  ThisTableForAnyDayOfWeek(dayAsNumberOfWeek:number) {
 }
 const MakeTable = (TO_DAY_AS_NUMBER:number) => {
   let x: JSX.Element[] = [...Array.from(Array(6).keys())].splice(1,).map(num => {
-    if ((TO_DAY_AS_NUMBER > 5 || TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1)  TO_DAY_AS_NUMBER = 1
+    if ((TO_DAY_AS_NUMBER > 5 && TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1) TO_DAY_AS_NUMBER = 1
     return (
-      <tr key={TO_DAY_AS_NUMBER}>
+      <tr key={TO_DAY_AS_NUMBER+randomInt(100000)}>
           <td key={randomInt(100000)} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
           <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
           <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
