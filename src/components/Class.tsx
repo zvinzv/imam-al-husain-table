@@ -11,7 +11,7 @@ import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
   return (
-    <tr  key={DRS_NUMBER}>
+    <tr key={DRS_NUMBER}>
       <td className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-fit">{DRS_NUMBER}</td>
       <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
       <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
