@@ -23,7 +23,7 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
       
       if (getCookie("SendRequestFaild"+unieq) !== "true" && loading !== true) {
         try {
-            const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secretId+`&text=${LongMsg ? LongMsg : msg ? msg : "طلب تصحيح التاريخ."}`);
+            const response = await fetch("https://api.telegram.org/bot5129401785:AAFRNWARWM88YcxJsgbEiJvvNB3lpEU-3Z4/sendMessage?chat_id="+secretId+`&text=${LongMsg ? msg+"\n"+LongMsg : msg ? msg : "طلب تصحيح التاريخ."}`);
             const todos = await response.json();
             if (todos.ok) {
               setDone(1);
@@ -56,21 +56,22 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
       <form onSubmit={e => {
         e.preventDefault();
         }}>
-        <div style={{"opacity": popUp ? "1" : "0", "pointerEvents" : popUp ? "auto" : "none"}} className="transition-all fixed bg-stone-800/80 w-full h-full top-0 left-0 grid place-content-center">
-          <div className="bg-stone-700 flex flex-col p-3 rounded gap-2 font-bold ">
-            <label htmlFor="explain" className="text-xl my-2">ما سبب طلبك ؟</label>
-            <input ref={userInput} type="text" id="explain" className="text-black outline-none border-none p-2 px-3 rounded" placeholder="عنوان الطلب"/>
-            {errs.fInput === "ff" && "املاء الصندوق"}
-            <textarea ref={userInput2} id=""  className="max-h-60 text-black outline-none border-none p-2 px-3 rounded" placeholder="تفاصيل المشكلة او الطلب"/>
-            {errs.lInput === "dd" && "املاء الصندوق"}
+        <div style={{"opacity": popUp ? "1" : "0", "pointerEvents" : popUp ? "auto" : "none"}} className="transition-all fixed z-50 overflow-y-clip bg-black/80 w-full h-screen top-0 left-0 grid place-content-center">
+          <div className="bg-zinc-800 flex flex-col p-3 rounded-xl gap-2 font-bold ">
+            <label htmlFor="explain" className="text-xl my-2 text-white">ما سبب طلبك ؟</label>
+            <input ref={userInput} type="text" id="explain" className="text-white bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="عنوان الطلب"/>
+            <p className="text-right">{errs.fInput === "ff" && "املاء الصندوق"}</p>
+            <textarea ref={userInput2} id=""  className="max-h-60 text-white bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="تفاصيل المشكلة او الطلب"/>
+            <p className="text-right">{errs.lInput === "dd" && "املاء الصندوق"}</p>
             <div className="flex gap-2">
-              <button className="bg-stone-500 hover:bg-stone-600 rounded p-2 flex-grow" onClick={() => {
+              <button className="bg-emerald-500/60 hover:bg-emerald-500/70 transition-all rounded p-2 flex-grow" onClick={() => {
                 if (userInput.current?.value !== "" && userInput2.current?.value !== "") {
                   handleClick(`${userInput.current?.value}, ${userInput2.current?.value}`)
+                  setPopUp(false)
                   setErr({logic: false, fInput: "", lInput: ""})
                   if (userInput.current !== null) userInput.current.value = ""
                   if (userInput2.current !== null) userInput2.current.value = ""
-                  return setPopUp(false)
+                  return 
                 }
                 else if (userInput.current?.value === "" && userInput2.current?.value === "") {
                   return setErr({fInput: "ff", lInput: "dd",logic: true})
@@ -83,7 +84,12 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
                 }
                 //  ?  : userInput.current?.value === "" && userInput.current?.value === "" ? setErr({fInput: "ff", lInput:"dd", logic: true}) : userInput.current?.value === "" ? setErr({fInput: "ff", lInput: "", logic: true}) : userInput2.current?.value === "" ? setErr({fInput: "",lInput:"dd", logic: true}) : null; errs.logic === false ? setPopUp(false) : null
               }} >أرسال</button>
-              <button className="bg-red-500 hover:bg-red-600 rounded p-2" onClick={() => {setPopUp(false); setErr({logic: false, fInput: "", lInput: ""})}} >الغاء الطلب</button>
+              <button className="bg-red-500/60 hover:bg-red-500/70 transition-all rounded p-2" onClick={() => {
+                setPopUp(false);
+                setErr({logic: false, fInput: "", lInput: ""});
+                if (userInput.current !== null) userInput.current.value = ""
+                if (userInput2.current !== null) userInput2.current.value = ""
+              }} >الغاء الطلب</button>
             </div>
           </div>
         </div>

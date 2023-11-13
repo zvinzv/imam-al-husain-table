@@ -1,5 +1,8 @@
 import 'remixicon/fonts/remixicon.css'
-
+import { Metadata } from "next"
+export const metadata: Metadata = {
+  title: 'تحميل..',
+}
 export default function loading() {
   return (
     <div className='flex justify-center items-center h-72'>

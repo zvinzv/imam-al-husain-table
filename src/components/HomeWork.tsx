@@ -6,7 +6,7 @@ import GetDateFromTelegram from "@/func/GetDateFromTelegram";
 import { randomInt } from "crypto";
 import SaveToCookies from "@/func/SaveToCookies";
 import { drsAndDay } from "@/func/GetTheClassTable";
-
+import Link from 'next/link';
 function  ThisTableForAnyDayOfWeek(dayAsNumberOfWeek:number) {
   // I clarify to the student this table for any day of week
   const script = ["هذا الجدول ليوم الاحد", "هذا الجدول ليوم الاثنين", "هذا الجدول ليوم الثلاثاء", "هذا الجدول ليوم الاربعاء", "هذا الجدول ليوم الخميس"]
@@ -18,9 +18,10 @@ const MakeTable = (TO_DAY_AS_NUMBER:number) => {
     if ((TO_DAY_AS_NUMBER > 5 && TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1) TO_DAY_AS_NUMBER = 1
     return (
       <tr key={TO_DAY_AS_NUMBER+randomInt(100000)}>
-          <td key={randomInt(100000)} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
-          <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-          <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
+          <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-stone-600 hover:bg-stone-700 px-2 py-1 rounded text-sm'>التفاصيل</Link>}</td>
           {/* {
           (drs[2] as string).length > 90 ?
           <td key={randomInt(100000)} 
@@ -56,13 +57,13 @@ export default async function HomeWork() {
           <table className="table-auto w-full font-bold">
             <thead>
               <tr>
-                {["ت", "المادة", "التحضير"].map((head:string) => <th key={head} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
+                {["ت", "المادة", "التحضير", "التفاصيل"].map((head:string) => <th key={head} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
               </tr>
             </thead>
             <tbody>
                   {MakeTable(toDayIs)}
                   <tr>
-                    <td colSpan={3} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
+                    <td colSpan={4} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
                   </tr>
             </tbody>
           </table>

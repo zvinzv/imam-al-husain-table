@@ -1,7 +1,7 @@
 type Preparation = {
   name: string;
   sure: {
-    name: string, 
+    name: "مرتضى ظافر" | "مصطفى نسيم"| "", 
     logic: boolean
   }
   accessories: [
@@ -94,13 +94,13 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - لم يحدد بعد.",
         accessories: [
           {
             id: 1,
@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `ادب: من الوحدة الرابعة الى عبد الحميد الكاتب  ما داخل.`,
+        name: `قواعد: حل تمارين النعت.`,
         accessories: [
           {
             id: 1,
@@ -233,7 +233,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'P.46 B C Dو P.47 E Fو انشاء عن الانترنيت مدري عن الهاتف',
+        name: 'P.46 B C D || P.47 E F || انشاء عن الهاتف.',
         accessories: [
           {
             id: 1,
@@ -252,7 +252,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - لم يحدد بعد",
+        name: "امتحان الشهر الاول - من البداية لحد ما نوصل.",
         accessories: [
           {
             id: 1,
@@ -300,7 +300,7 @@ export default function GetTheClassTable(): Table  {
       dailyPreparation: {
           name: 'تحضير نيوتن الثالث.',
           sure: {
-            name: "", 
+            name: "مرتضى ظافر", 
             logic: false
           },
           accessories: [
@@ -317,7 +317,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-          name: "امتحان الشهر الاول - فصل الاول والثاني",
+          name: "امتحان الشهر الثالث - لم يحدد بعد",
           sure: {
             name: "", 
             logic: false
@@ -675,12 +675,12 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حل تمارين',
+        name: 'رسم الدائرة.',
         accessories: [
           {
             id: 1,
-            file: [],
-            description: [],
+            file: ["/public/4003d23d3d686ff204f90ee241394cbe.jpg"],
+            description: ["شكل الدائرة المرادة.", "الدائرة على شكل صورة."],
             sure: {
               name: "",
               logic: false
@@ -688,13 +688,13 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الاول - لم يحدد بعد.",
         accessories: [
           {
             id: 1,
