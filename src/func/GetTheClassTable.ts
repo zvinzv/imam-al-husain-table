@@ -679,7 +679,7 @@ export default function GetTheClassTable(): Table  {
         accessories: [
           {
             id: 1,
-            file: ["/public/4003d23d3d686ff204f90ee241394cbe.jpg"],
+            file: ["/public/photo_2023-11-13_21-34-43.jpg"],
             description: ["شكل الدائرة المرادة.", "الدائرة على شكل صورة."],
             sure: {
               name: "",
