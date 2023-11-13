@@ -84,7 +84,7 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
                 }
                 //  ?  : userInput.current?.value === "" && userInput.current?.value === "" ? setErr({fInput: "ff", lInput:"dd", logic: true}) : userInput.current?.value === "" ? setErr({fInput: "ff", lInput: "", logic: true}) : userInput2.current?.value === "" ? setErr({fInput: "",lInput:"dd", logic: true}) : null; errs.logic === false ? setPopUp(false) : null
               }} >أرسال</button>
-              <button className="bg-red-500/60 hover:bg-red-500/70 transition-all rounded p-2" onClick={() => {
+              <button className="bg-zinc-500/60 hover:bg-zinc-500/70 transition-all rounded p-2" onClick={() => {
                 setPopUp(false);
                 setErr({logic: false, fInput: "", lInput: ""});
                 if (userInput.current !== null) userInput.current.value = ""
@@ -95,9 +95,9 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
         </div>
         
         {loading ? 
-            <button className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
+            <button className={style ? style : `flex items-center gap-2 ${!err ? "bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700":"bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
           : 
-            <button onClick={() => setPopUp(prev => !prev)} className={style ? style : `flex items-center gap-2 ${!err ? "bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700":"bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700"} bg-slate-300 hover:bg-slate-400 dark:bg-slate-600 dark:hover:bg-slate-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i>{title}</button>
+            <button onClick={() => setPopUp(prev => !prev)} className={style ? style : `flex items-center gap-2 ${!err ? "bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700":"bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700"} bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i>{title}</button>
         }
         
         {   isDone === 1 ?
@@ -108,7 +108,7 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
               <span>تم ارسال الطلب.</span>
             </p>
           : isDone === -1 ?
-            <p className="text-md text-center text-red-500 font-bold mt-2 flex gap-2 items-center justify-center">
+            <p className="text-md text-center text-zinc-500 font-bold mt-2 flex gap-2 items-center justify-center">
               <span className="cursor-pointer" onClick={() => setDone(null)}>
                 <i className="ri-close-line"></i>
               </span>

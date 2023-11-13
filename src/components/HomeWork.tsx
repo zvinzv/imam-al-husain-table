@@ -18,21 +18,21 @@ const MakeTable = (TO_DAY_AS_NUMBER:number) => {
     if ((TO_DAY_AS_NUMBER > 5 && TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1) TO_DAY_AS_NUMBER = 1
     return (
       <tr key={TO_DAY_AS_NUMBER+randomInt(100000)}>
-          <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
-          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
-          <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-stone-600 hover:bg-stone-700 px-2 py-1 rounded text-sm'>التفاصيل</Link>}</td>
+          <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm'>التفاصيل</Link>}</td>
           {/* {
           (drs[2] as string).length > 90 ?
           <td key={randomInt(100000)} 
-          className="bg-stone-300 dark:bg-stone-500 p-1 text-center 
-                      border border-collapse border-stone-700">
-                    {<Link href={`home-work/${GetEnglishSubjectAsArabic(drs[1] as string)}`} className="font-bold dark:hover:bg-stone-700 dark:bg-stone-600 hover:bg-stone-300 bg-stone-20 p-1 px-3 rounded transition-all whitespace-nowrap w-full text-center flex justify-center">التحضير جاهز, هنا!</Link>}</td>
+          className="bg-zinc-300 dark:bg-zinc-500 p-1 text-center 
+                      border border-collapse border-zinc-700">
+                    {<Link href={`home-work/${GetEnglishSubjectAsArabic(drs[1] as string)}`} className="font-bold dark:hover:bg-zinc-700 dark:bg-zinc-600 hover:bg-zinc-300 bg-zinc-20 p-1 px-3 rounded transition-all whitespace-nowrap w-full text-center flex justify-center">التحضير جاهز, هنا!</Link>}</td>
           :
-          <td key={randomInt(100000)} className="bg-stone-300 dark:bg-stone-500 p-1 text-center border border-collapse border-stone-700">
+          <td key={randomInt(100000)} className="bg-zinc-300 dark:bg-zinc-500 p-1 text-center border border-collapse border-zinc-700">
             <SendReq key={42} title="طلب الحصول على التحضير." secretId={"1145036551"} err={true} maxAge={10} msg={`طلب الحصول على التحضير لمادة ال${drs[1]}.`} unieq={GetEnglishSubjectAsArabic(drs[1])} 
-                    style="font-bold dark:hover:bg-stone-800 dark:bg-stone-700
-                          hover:bg-stone-300 bg-stone-20 p-1 px-3 rounded 
+                    style="font-bold dark:hover:bg-zinc-800 dark:bg-zinc-700
+                          hover:bg-zinc-300 bg-zinc-20 p-1 px-3 rounded 
                           transition-all whitespace-nowrap w-full text-center 
                           flex justify-center gap-3"/>
             </td>} */}
@@ -57,13 +57,13 @@ export default async function HomeWork() {
           <table className="table-auto w-full font-bold">
             <thead>
               <tr>
-                {["ت", "المادة", "التحضير", "التفاصيل"].map((head:string) => <th key={head} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
+                {["ت", "المادة", "التحضير", "التفاصيل"].map((head:string) => <th key={head} className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700">{head}</th> )}
               </tr>
             </thead>
             <tbody>
                   {MakeTable(toDayIs)}
                   <tr>
-                    <td colSpan={4} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
+                    <td colSpan={4} className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
                   </tr>
             </tbody>
           </table>

@@ -8,12 +8,12 @@ import 'remixicon/fonts/remixicon.css'
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
   return (
     <tr key={DRS_NUMBER}>
-      <td className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-fit">{DRS_NUMBER}</td>
-      <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 4 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 4)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 5 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-stone-500"} p-1 px-2 text-center border border-collapse border-stone-700`}>{drsAndDay(DRS_NUMBER, 5)[0].subject.ar}</td>
+      <td className="bg-zinc-300 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-fit">{DRS_NUMBER}</td>
+      <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 4 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 4)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 5 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 5)[0].subject.ar}</td>
     </tr>
   )
 }
@@ -29,17 +29,17 @@ export default async function Class() {
       <div className="mx-auto w-fit text-center mt-6">
       <h1 className="text-3xl font-bold">جدول الدروس اليومية.</h1>
       <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
-      <h1 className={`text-xl font-bold dark:font-light mt-5 mx-auto dot after:animate-ping ${ DateObject.toDayHoliday === false ? "before:bg-emerald-400 after:bg-emerald-400" : DateObject.toDayHoliday === true ? "before:bg-red-600 after:bg-red-600" : "before:bg-stone-400 after:bg-stone-400"}`}>
+      <h1 className={`text-xl font-bold dark:font-light mt-5 mx-auto dot after:animate-ping ${ DateObject.toDayHoliday === false ? "before:bg-emerald-400 after:bg-emerald-400" : DateObject.toDayHoliday === true ? "before:bg-zinc-600 after:bg-zinc-600" : "before:bg-zinc-400 after:bg-zinc-400"}`}>
         {getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})} {
         DateObject.toDayHoliday === true ? 
         
-          <span className="text-red-400">عطلة</span> 
+          <span className="text-zinc-400">عطلة</span> 
         
         :
         DateObject.toDayHoliday === false ?
           <span className="text-emerald-400">دوام رسمي</span>
           :
-          <span className="text-stone-600 dark:text-stone-300">خلل في التاريخ</span>
+          <span className="text-zinc-600 dark:text-zinc-300">خلل في التاريخ</span>
         }
       .</h1>
       </div>
@@ -48,7 +48,7 @@ export default async function Class() {
           <table className="table-auto w-full font-bold">
             <thead>
               <tr>
-                {["ت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"].map((H:string)=> <th key={H} className="bg-stone-300 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>)}
+                {["ت", "الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس"].map((H:string)=> <th key={H} className="bg-zinc-300 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700">{H}</th>)}
               </tr>
             </thead>
             <tbody>

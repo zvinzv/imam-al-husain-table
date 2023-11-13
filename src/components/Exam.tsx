@@ -168,7 +168,7 @@ export default async function Exam() {
             <tr>
               {data.head.map((H:string)=> {
                 return(
-                    <th key={data.head.indexOf(H)} className="bg-stone-200 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{H}</th>
+                    <th key={data.head.indexOf(H)} className="bg-zinc-200 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700">{H}</th>
                 )
               })}
             </tr>
@@ -179,18 +179,18 @@ export default async function Exam() {
               if (H.date === CurrentDate){
                 return(
                   <tr key={H.id}>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700`}>{H.day}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.date}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.subject}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-zinc-700`}>{H.day}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.date}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.subject}</td>
                   </tr>
                 )
               }else if (H.date !== CurrentDate){
 
                 return(
                   <tr key={H.id}>
-                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700 `}>{H.day}</td>
-                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.date}</td>
-                    <td className={` ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.subject}</td>
+                    <td className={`  ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-zinc-700 `}>{H.day}</td>
+                    <td className={`  ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700 `}>{H.date}</td>
+                    <td className={` ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700 `}>{H.subject}</td>
                   </tr>
                 )
               }else{

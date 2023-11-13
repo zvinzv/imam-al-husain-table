@@ -21,12 +21,12 @@ export function generateMetadata({ params }: {params: {id: "biology" | "chemistr
 }
 function Card({subject, title, content, sureMsg, icon="ri-book-fill", accessories}:{subject:string, title:string, content:string, sureMsg?:string, icon?:string, accessories:accessories}): JSX.Element{
   return (
-    <div className="bg-stone-800 w-full mt-6 white overflow-hidden rounded-xl">
-      <p className="text-2xl bg-stone-700 flex justify-center sm:justify-start items-center h-12 p-3 font-semibold gap-2"> <i className={icon}></i>  <span>{title}</span></p>
+    <div className="bg-zinc-800 w-full mt-6 white overflow-hidden rounded-xl">
+      <p className="text-2xl bg-zinc-700 flex justify-center sm:justify-start items-center h-12 p-3 font-semibold gap-2"> <i className={icon}></i>  <span>{title}</span></p>
       <p className="text-xl flex flex-col items-start sm:items-start text-right justify-center h-fit p-3 font-semibold"><span className="">{content !== "" ? content : "لم يحدد بعد."}</span></p>
 
       {accessories.map(acces => <div key={acces.id} className="px-3">
-        {acces.file.length >= 1 && acces.file[0] !== "" ? acces.file.map(files => <div className="flex gap-2 flex-wrap"><p className="text-sm text-right rounded font-bold bg-stone-600 hover:bg-stone-700 w-fit"><a href={files.slice(7, )} className="block px-2 py-1">عرض {acces.description[acces.file.indexOf(files)]}</a></p><p className="text-sm text-right rounded font-bold bg-stone-600 hover:bg-stone-700 w-fit"><a download href={files.slice(7, )} className="block px-2 py-1">تنزيل {acces.description[acces.file.indexOf(files)+1]}</a></p> </div>) : <p className="text-sm text-stone-500 font-bold">لا توجد اضافات.</p>}
+        {acces.file.length >= 1 && acces.file[0] !== "" ? acces.file.map(files => <div key={acces.file.indexOf(files)} className="flex gap-2 flex-wrap"><p className="text-sm text-right rounded font-bold bg-zinc-600 hover:bg-zinc-700 w-fit"><a href={files.slice(7, )} className="block px-2 py-1">عرض {acces.description[acces.file.indexOf(files)]}</a></p><p className="text-sm text-right rounded font-bold bg-zinc-600 hover:bg-zinc-700 w-fit"><a download href={files.slice(7, )} className="block px-2 py-1">تنزيل {acces.description[acces.file.indexOf(files)+1]}</a></p> </div>) : <p className="text-sm text-zinc-500 font-bold">لا توجد اضافات.</p>}
       </div>)}
       <br />
       <div className="text-sm space-y-1 py-2 text-center">
@@ -50,7 +50,7 @@ export default function page({params}:{params: {id: "biology" | "chemistry" | "p
       :
       (<h1 className="text-center my-12 text-3xl font-bold">لا توجد هكذا مادة !!</h1>)
       }
-      <Link className="text-center bg-red-600/30 font-bold flex justify-center gap-2 w-fit mx-auto p-2 rounded hover:bg-red-700/50 transition-all" href={"/home-work"}><i className="ri-arrow-go-back-fill"></i>  <span>الرجوع الى الخلف.</span></Link>
+      <Link className="text-center bg-zinc-600/30 font-bold flex justify-center gap-2 w-fit mx-auto p-2 rounded hover:bg-zinc-700/50 transition-all" href={"/home-work"}><i className="ri-arrow-go-back-fill"></i>  <span>الرجوع الى الخلف.</span></Link>
     </>
     
   )
