@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `قواعد: حل تمارين النعت.`,
+        name: `قواعد: حل تمارين النعت على السبورة.`,
         accessories: [
           {
             id: 1,
@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'تحضير نيوتن الثالث.',
+          name: 'بعد وكت شبيك مستعجل.',
           sure: {
             name: "مرتضى ظافر", 
             logic: false
@@ -317,7 +317,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-          name: "امتحان الشهر الثالث - لم يحدد بعد",
+          name: "امتحان الشهر الثاني - لم يحدد بعد",
           sure: {
             name: "", 
             logic: false
@@ -362,7 +362,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حفظ الي اخذناه, ويفضل قرائة التهجين (غير مجبور ان تقراه).',
+        name: 'حفظ الي اخذناه.',
         accessories: [
           {
             id: 1,
@@ -375,7 +375,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
@@ -555,7 +555,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حل تمارين',
+        name: 'سورة المؤمنون.',
         accessories: [
           {
             id: 1,
@@ -568,7 +568,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
