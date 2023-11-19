@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `قواعد: حل تمارين النعت على السبورة.`,
+        name: `ادب: عبد الحميد حياته الى رسالته داخله.`,
         accessories: [
           {
             id: 1,
@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'بعد وكت شبيك مستعجل.',
+          name: 'مراجعة الي اخذناه.',
           sure: {
             name: "مرتضى ظافر", 
             logic: false
@@ -317,7 +317,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-          name: "امتحان الشهر الثاني - لم يحدد بعد",
+          name: "امتحان الشهر الثاني - الفصل الثالث والرابع",
           sure: {
             name: "", 
             logic: false
@@ -362,7 +362,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حفظ الي اخذناه.',
+        name: 'حفظ من 62 الى 69, حفظ الجدول الدوري.',
         accessories: [
           {
             id: 1,
@@ -381,7 +381,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - لم يحدد بعد",
         accessories: [
           {
             id: 1,
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'الفصل الثاني - من البداية حتى تنفس النباتات داخل, حل اسئلة الفصل الاول.',
+        name: 'الفصل الثاني - من مراحل التنفس حتى تنفس النباتات داخل.',
         accessories: [
           {
             id: 1,
@@ -445,7 +445,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - لم يحدد بعد",
         accessories: [
           {
             id: 1,
@@ -490,7 +490,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'من الكتل الهوائية الى الطقس القاسي ما داخل.',
+        name: 'من الطقس القاسي الى نهاية الفصل.',
         accessories: [
           {
             id: 1,
@@ -503,13 +503,13 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الاول - فصل الاول",
         accessories: [
           {
             id: 1,
@@ -522,7 +522,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       }
@@ -619,7 +619,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'الفصل الثاني - الدرس الاول - اكسل - 28 و29 و30 و31.',
+        name: 'اكسل - من 29 الى 32 داخل.',
         accessories: [
           {
             id: 1,
@@ -638,7 +638,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - لم يحدد بعد",
         accessories: [
           {
             id: 1,

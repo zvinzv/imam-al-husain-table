@@ -92,3 +92,46 @@ body {
   gap: 20px;
   grid-template-rows: auto 1fr auto;
 }
+
+.dot2{
+  position: relative;
+}
+.dot2::after{
+  content: '2' !important;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red;
+  top: -4px;
+  right: -4px;
+}
+/* .noDot::after{
+  content: '';
+  position: absolute;
+  width: 0px !;
+  height: 0px;
+  background: transparent !important;
+  top: -4px;
+  right: -4px;
+} */
+
+.ss{
+  animation: pulse2 2s alternate infinite linear;
+}
+
+@keyframes pulse2 {
+  0%{
+    border-color: transparent;
+  }
+  100%{
+    border-color: rgba(228, 228, 231, 0.298);
+  }
+}
