@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `ادب: عبد الحميد حياته الى رسالته داخله.`,
+        name: `قواعد: التوابع, العطف.`,
         accessories: [
           {
             id: 1,
