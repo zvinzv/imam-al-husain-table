@@ -233,7 +233,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'P.46 B C D || P.47 E F || انشاء عن الهاتف.',
+        name: "لا اعلم, سيتم تحديثه قريبا.",
         accessories: [
           {
             id: 1,
@@ -246,7 +246,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "مصطفى نسيم",
+          name: "",
           logic: false
         }
       },

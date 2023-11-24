@@ -1,8 +1,8 @@
 import SendReq from "@/components/SendReq"
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
-import {drsAndDay} from "@/func/GetTheClassTable";
+import {drsAndDay} from "@/data/GetTheClassTable";
 import SaveToCookies from "@/func/SaveToCookies";
-import getArabicDateByNewDateFunction from "@/func/function getArabicDateByNewDateFunction";
+import getArabicDateByNewDateFunction from "@/func/GetArabicDateByNewDateFunction";
 import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {

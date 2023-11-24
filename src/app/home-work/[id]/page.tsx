@@ -1,6 +1,6 @@
 import SendReq from "@/components/SendReq"
 import GetArabicSubjectFromEnglish from "@/func/GetArabicSubjectFromEnglish"
-import { Table, subjectName } from "@/func/GetTheClassTable"
+import { Table, subjectName } from "@/data/GetTheClassTable"
 import { Metadata} from "next"
 import Link from "next/link"
 import 'remixicon/fonts/remixicon.css'

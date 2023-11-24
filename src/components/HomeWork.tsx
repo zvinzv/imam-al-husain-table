@@ -5,7 +5,7 @@ import GetCurrentTimeArabicWithStyle from "@/func/GetCurrentTimeArabicWithStyle"
 import GetDateFromTelegram from "@/func/GetDateFromTelegram";
 import { randomInt } from "crypto";
 import SaveToCookies from "@/func/SaveToCookies";
-import { drsAndDay } from "@/func/GetTheClassTable";
+import { drsAndDay } from "@/data/GetTheClassTable";
 import Link from 'next/link';
 function  ThisTableForAnyDayOfWeek(dayAsNumberOfWeek:number) {
   // I clarify to the student this table for any day of week
