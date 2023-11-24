@@ -1,4 +1,4 @@
-import { Post, newsData } from "@/data/data"
+import { Post, News } from "@/data/News"
 import SaveToCookies from "@/func/SaveToCookiesNews"
 import { Metadata } from "next"
 import Link from "next/link"
@@ -32,8 +32,8 @@ export default function page() {
       <h1 className='text-3xl my-4'>آخر الاخبار تُنشر هنا!</h1>
       <h1 className='text-lg my-2'>اخبار مدرسة الامام الحسين (ع), للصف الخامس الاعدادي.</h1>
       <div className='flex flex-col gap-2'>
-        {<SaveToCookies postNumb={newsData.length}/>}
-        {newsData.reverse().map((post:Post) => newPost(post.id, post.text, post.desc1, post.desc2, post.date, {name: post.btnData.name, link: post.btnData.link}))}
+        {<SaveToCookies postNumb={News.length}/>}
+        {News.reverse().map((post:Post) => newPost(post.id, post.text, post.desc1, post.desc2, post.date, {name: post.btnData.name, link: post.btnData.link}))}
       </div>
     </div>
   )

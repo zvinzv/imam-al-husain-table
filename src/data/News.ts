@@ -9,7 +9,7 @@ export type Post = {
     link: string
   }
 }
-export const newsData: Post[] = [
+export const News: Post[] = [
   {
     id: 1,
     text: "امتحان حاسوب.",

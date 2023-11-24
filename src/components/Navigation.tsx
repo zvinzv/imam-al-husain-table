@@ -1,15 +1,15 @@
 
 import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
-import {data} from "@/data/NavigationLink"
+import {NavigationLink} from "@/data/NavigationLink"
 import { cookies } from "next/headers";
-import { newsData } from "@/data/data";
+import { News } from "@/data/News";
 
 
 const Navigation = ({children}: {children: React.ReactNode}) => {
   const cookie = cookies().get("newsVisited")
   const postNumber = cookie !== undefined && JSON.parse(cookie?.value as string).postNumb
-  const MainIcon = ({children, i}:{children: React.ReactNode, i: typeof data[0]}) => {
+  const MainIcon = ({children, i}:{children: React.ReactNode, i: typeof NavigationLink[0]}) => {
     return(
       <Link key={i.id} href={i.href} className={`border-[1px] ss dark:hover:bg-zinc-600 dark:bg-zinc-500  hover:bg-zinc-300 bg-zinc-200 p-3 leading-none rounded-xl transition-all relative group/icon flex items-center justify-center flex-grow`}> 
         <i className={i.icon}></i>
@@ -34,16 +34,16 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
       <div className='w-full grid place-items-center '>
         <nav className={`flex justify-center items-center w-fit mx-5 mb-5 rounded-xl p-3  bg-zinc-400 dark:bg-zinc-700 `}>
             <ul className="text_en text-2xl flex justify-start items-center gap-3 w-fit menu rounded-lg flex-wrap">
-              {data.map(i => {
+              {NavigationLink.map(i => {
                 return(
                   i.href === "/news" && cookie === undefined 
                   ?
                     <MainIcon key={i.id} i={i}>
-                      <span className="noficationDot bg-red-500 text-white font-bold">{newsData.length > 9 ? "+9" : newsData.length}</span>
+                      <span className="noficationDot bg-red-500 text-white font-bold">{News.length > 9 ? "+9" : News.length}</span>
                     </MainIcon>  
                   : i.href === "/news" && cookie !== undefined ?
                     <MainIcon key={i.id} i={i}>
-                      {newsData.length - postNumber > 9 ? <span className="noficationDot bg-red-500 text-white font-bold">+9</span> : newsData.length - postNumber > 0 ? <span className="noficationDot bg-red-500 text-white font-bold">{newsData.length - postNumber}</span> : null }
+                      {News.length - postNumber > 9 ? <span className="noficationDot bg-red-500 text-white font-bold">+9</span> : News.length - postNumber > 0 ? <span className="noficationDot bg-red-500 text-white font-bold">{News.length - postNumber}</span> : null }
                     </MainIcon>
                   :
                     <MainIcon key={i.id} i={i}> </MainIcon>
