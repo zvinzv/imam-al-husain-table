@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const newPost = (post:number,text:string, desc1:string, desc2: string, date: string | Date | number, btnData:{name:string, link:string}) => {
   return(
     <div key={post} className='flex justify-center'>
-      <div className='min-h-36 w-96 bg-zinc-600/25 rounded-xl p-4'>
+      <div className='min-h-36 max-w-sm w-full bg-zinc-600/25 rounded-xl p-4'>
         <div className='flex flex-col gap-2 justify-evenly w-full'>
           <h1 className='h-9 flex items-center text-right font-bold text-xl rounded-sm'>- {text}</h1>
           <div className='flex flex-col gap-1'>
@@ -29,7 +29,7 @@ const newPost = (post:number,text:string, desc1:string, desc2: string, date: str
 export default function page() {
   return (
     <div className='text-center relative px-5'>
-      <h1 className='text-3xl my-4'>آخر الاخبار تُنشر هنا!</h1>
+      <h1 className='text-3xl'>آخر الاخبار تُنشر هنا!</h1>
       <h1 className='text-lg my-2'>اخبار مدرسة الامام الحسين (ع), للصف الخامس الاعدادي.</h1>
       <div className='flex flex-col gap-2'>
         {<SaveToCookies postNumb={News.length}/>}

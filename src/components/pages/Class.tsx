@@ -5,41 +5,43 @@ import SaveToCookies from "@/func/SaveToCookies";
 import getArabicDateByNewDateFunction from "@/func/GetArabicDateByNewDateFunction";
 import Link from "next/link";
 import 'remixicon/fonts/remixicon.css'
+import { redirect } from "next/navigation";
 const MakeTable = (DRS_NUMBER:number, STYLE_BY_DAY:number) => {
   return (
     <tr key={DRS_NUMBER}>
       <td className="bg-zinc-300 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-fit">{DRS_NUMBER}</td>
-      <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 4 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 4)[0].subject.ar}</td>
-      <td className={`${STYLE_BY_DAY === 5 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-zinc-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 5)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 1 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 1)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 2 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 2)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 3 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 3)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 4 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 4)[0].subject.ar}</td>
+      <td className={`${STYLE_BY_DAY === 5 ? "bg-emerald-500/70 animate-pulse" : STYLE_BY_DAY > 5 && STYLE_BY_DAY < 8 ? "bg-red-500/70" : "bg-zinc-500"} p-1 px-2 text-center border border-collapse border-zinc-700`}>{drsAndDay(DRS_NUMBER, 5)[0].subject.ar}</td>
     </tr>
   )
 }
 export default async function Class() {
-  const TelegramApiDate = await GetDateFromTelegram() 
+  const TelegramApiDate: {data:string, setted: boolean, message?: string} = await GetDateFromTelegram() as {data:string, setted: boolean, message?: string}
+
   const DateObject:{toDayHoliday: boolean | undefined, toDayIs: number} = {
       toDayHoliday: getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: 'numeric'}) === "Invalid Date" ? undefined : ["الجمعة", "السبت"].includes(getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long'})) ? true : false,
       toDayIs: new Date(TelegramApiDate.data).getDay()+1,
   }
   return (
     <div>
-      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
-      <div className="mx-auto w-fit text-center mt-6">
-      <h1 className="text-3xl font-bold">جدول الدروس اليومية.</h1>
+      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : TelegramApiDate.setted === false && TelegramApiDate.data === null ? redirect(`/social?alert=${TelegramApiDate.message}`) : null}
+      <div className="mx-auto w-fit text-center">
+      <h1 className="text-3xl">جدول الدروس اليومية.</h1>
       <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
-      <h1 className={`text-xl font-bold dark:font-light mt-5 mx-auto dot after:animate-ping ${ DateObject.toDayHoliday === false ? "before:bg-emerald-400 after:bg-emerald-400" : DateObject.toDayHoliday === true ? "before:bg-zinc-600 after:bg-zinc-600" : "before:bg-zinc-400 after:bg-zinc-400"}`}>
+      <h1 className={`text-xl font-bold dark:font-light mt-5 mx-auto dot after:animate-ping ${ DateObject.toDayHoliday === false ? "before:bg-emerald-400 after:bg-emerald-400" : DateObject.toDayHoliday === true ? "before:bg-red-600 after:bg-red-600" : "before:bg-zinc-400 after:bg-zinc-400"}`}>
         {getArabicDateByNewDateFunction(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})} {
         DateObject.toDayHoliday === true ? 
         
-          <span className="text-zinc-400">عطلة</span> 
+          <span className="text-red-400">عطلة</span> 
         
         :
         DateObject.toDayHoliday === false ?
           <span className="text-emerald-400">دوام رسمي</span>
           :
-          <span className="text-zinc-600 dark:text-zinc-300">خلل في التاريخ</span>
+          <span className="text-yellow-600 dark:text-yellow-300">خلل في التاريخ</span>
         }
       .</h1>
       </div>

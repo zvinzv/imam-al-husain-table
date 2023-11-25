@@ -1,7 +1,7 @@
 type Preparation = {
   name: string;
   sure: {
-    name: "مرتضى ظافر" | "مصطفى نسيم"| "", 
+    name: "مرتضى ظافر" | "مصطفى نسيم"| "الجني الاثول" | "", 
     logic: boolean
   }
   accessories: [
@@ -233,7 +233,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: "لا اعلم, سيتم تحديثه قريبا.",
+        name: "تحضير First conditional, اطلاع على Talking about the future, حل نشاط في الدفتر صفحة 55 تمرين A واجب عمل اسئلة (حزورة) عن حيوان مع ذكر الجواب.",
         accessories: [
           {
             id: 1,
@@ -246,13 +246,13 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - من البداية لحد ما نوصل.",
+        name: "امتحان الشهر الثاني - لم يحدد بعد.",
         accessories: [
           {
             id: 1,
@@ -439,7 +439,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },
@@ -458,7 +458,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "مرتضى ظافر",
+          name: "",
           logic: false
         }
       }
@@ -509,7 +509,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول",
+        name: "امتحان الشهر الثاني - لم يحدد بعد",
         accessories: [
           {
             id: 1,
@@ -522,7 +522,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "مرتضى ظافر",
+          name: "",
           logic: false
         }
       }
@@ -574,7 +574,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - فصل الاول والثاني",
         accessories: [
           {
             id: 1,
@@ -638,7 +638,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الثاني - لم يحدد بعد",
+        name: "امتحان الشهر الثاني - من صفحة 19 الى صفحة 32 غير داخل",
         accessories: [
           {
             id: 1,
@@ -651,7 +651,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       }
@@ -694,7 +694,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الاول - لم يحدد بعد.",
+        name: "امتحان الشهر الثاني - لم يحدد بعد.",
         accessories: [
           {
             id: 1,
@@ -731,7 +731,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: "يعني رياضة يعني شتريد مثلا,",
+        name: "براحتك, يفضل تلعب وي برشلونه وتفوز عليهم 5-0.",
         accessories: [
           {
             id: 1,
@@ -744,13 +744,13 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "الجني الاثول",
           logic: false
         }
       },
 
       examPreparation: {
-        name: "",
+        name: "وين اكو امتحان شهري للرياضة 😂",
         accessories: [
           {
             id: 1,
@@ -763,7 +763,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "الجني الاثول",
           logic: false
         }
       }

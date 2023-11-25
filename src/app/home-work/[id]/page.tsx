@@ -42,8 +42,8 @@ export default function page({params}:{params: {id: "biology" | "chemistry" | "p
   return (
     <>
       {subject.length > 0 ? 
-      (<div className="text_en capitalize w-[20rem] mx-auto my-6 text-3xl text_ar">
-        <h1 className="font-bold text-center">تفاصيل مادة ال{subject[0].subject.ar}.</h1>
+      (<div className="text_en capitalize w-[20rem] mx-auto mb-6 text-3xl text_ar">
+        <h1 className="text-center">تفاصيل مادة ال{subject[0].subject.ar}.</h1>
         <Card key={1} subject={params.id} title="التحضير اليومي." content={`${subject[0].dailyPreparation.name.endsWith(".") ? subject[0].dailyPreparation.name : subject[0].dailyPreparation.name + "."}`} sureMsg={subject[0].dailyPreparation.sure.name} icon="ri-book-fill" accessories={subject[0].dailyPreparation.accessories}/>
         <Card key={2} subject={params.id} title="الامتحان الشهري." content={`${subject[0].examPreparation.name.endsWith(".") ? subject[0].examPreparation.name : subject[0].examPreparation.name + "."}`} sureMsg={subject[0].examPreparation.sure.name} icon="ri-book-open-fill" accessories={subject[0].examPreparation.accessories}/>
       </div>)

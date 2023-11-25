@@ -13,7 +13,7 @@ export const NavigationLink = [
   },
   {
     id: 3,
-    href: "/exam",
+    href: "/exam?month=2",
     icon: "ri-article-fill",
     text: "الامتحانات"
   },

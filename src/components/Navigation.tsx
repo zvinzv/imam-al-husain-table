@@ -13,7 +13,7 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
     return(
       <Link key={i.id} href={i.href} className={`border-[1px] ss dark:hover:bg-zinc-600 dark:bg-zinc-500  hover:bg-zinc-300 bg-zinc-200 p-3 leading-none rounded-xl transition-all relative group/icon flex items-center justify-center flex-grow`}> 
         <i className={i.icon}></i>
-        <span className="absolute top-0 left-0 text_ar text-sm text-white font-bold bg-zinc-500 whitespace-nowrap block px-3 py-3 leading-3 rounded-md right-1/2 translate-x-1/2 w-fit arrow after:border-t-zinc-500 opacity-0 pointer-events-none group-hover/icon:pointer-events-auto group-hover/icon:-translate-y-12 group-hover/icon:z-0 -z-30 -translate-y-10 group-hover/icon:opacity-100 transition-all shadow-2xl">{i.text}</span>
+        <span className="absolute top-0 left-0 text_ar text-sm text-white font-bold bg-zinc-500 whitespace-nowrap block px-3 py-3 leading-3 rounded-md right-1/2 translate-x-1/2 w-fit arrow after:border-t-zinc-500 opacity-0 pointer-events-none group-hover/icon:pointer-events-auto group-hover/icon:-translate-y-12 group-hover/icon:z-0 -translate-y-10 group-hover/icon:opacity-100 transition-all shadow-2xl z-30">{i.text}</span>
         {children}
       </Link>
     )
@@ -21,8 +21,8 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
   return (
     
     <div className="m">
-      <div className="mx-2">
-        <nav className={` bg-zinc-400 h-16 w-full max-w-lg mx-auto flex justify-center items-center dark:bg-zinc-700 rounded-xl mt-3 p-3 `}>
+      <div className="m-5">
+        <nav className={` bg-zinc-400 h-16 w-full max-w-lg mx-auto flex justify-center items-center dark:bg-zinc-700 rounded-xl p-3 `}>
             <div dir="ltr" className="text_en flex flex-col justify-center items-center gap-1">
               <h1 className="text-4xl font-extrabold leading-none ml-1">ZVINZV</h1>
             </div>
@@ -31,8 +31,8 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
       <div className="z-10">
         {children}
       </div>
-      <div className='w-full grid place-items-center '>
-        <nav className={`flex justify-center items-center w-fit mx-5 mb-5 rounded-xl p-3  bg-zinc-400 dark:bg-zinc-700 `}>
+      <div className='w-full pt-6 grid place-items-center'>
+        <nav className={`flex justify-center items-center mx-5 mb-5 rounded-xl p-3 bg-zinc-400 dark:bg-zinc-700 `}>
             <ul className="text_en text-2xl flex justify-start items-center gap-3 w-fit menu rounded-lg flex-wrap">
               {NavigationLink.map(i => {
                 return(

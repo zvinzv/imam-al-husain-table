@@ -7,9 +7,10 @@ export default async function GetDateFromTelegram(){
         cache:"no-store",
       })
       const res = await response.json()
+      if (!(res?.result[0]?.message?.text as string).includes("-")) throw Error() 
       return {data: res?.result[0]?.message?.text as string, setted: true}
     } catch (error) {
-      throw Error("هناك خطا في التحميل, قم باعادة تحميل الموقع او تواصل مع المطور.")
+      return {data: null, setted: false, message: "خلل في التاريخ, او فقدان للتاريخ, تواصل مع المطور لحل المشكلة."}
     }
   }else{
     return {data: cook.value as string, setted: false}

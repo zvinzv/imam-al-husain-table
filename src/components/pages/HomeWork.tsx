@@ -7,6 +7,7 @@ import { randomInt } from "crypto";
 import SaveToCookies from "@/func/SaveToCookies";
 import { drsAndDay } from "@/data/GetTheClassTable";
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 function  ThisTableForAnyDayOfWeek(dayAsNumberOfWeek:number) {
   // I clarify to the student this table for any day of week
   const script = ["هذا الجدول ليوم الاحد", "هذا الجدول ليوم الاثنين", "هذا الجدول ليوم الثلاثاء", "هذا الجدول ليوم الاربعاء", "هذا الجدول ليوم الخميس"]
@@ -18,37 +19,39 @@ const MakeTable = (TO_DAY_AS_NUMBER:number) => {
     if ((TO_DAY_AS_NUMBER > 5 && TO_DAY_AS_NUMBER < 8) || TO_DAY_AS_NUMBER === 1) TO_DAY_AS_NUMBER = 1
     return (
       <tr key={TO_DAY_AS_NUMBER+randomInt(100000)}>
-          <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name}</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm'>التفاصيل</Link>}</td>
-          {/* {
-          (drs[2] as string).length > 90 ?
-          <td key={randomInt(100000)} 
-          className="bg-zinc-300 dark:bg-zinc-500 p-1 text-center 
-                      border border-collapse border-zinc-700">
-                    {<Link href={`home-work/${GetEnglishSubjectAsArabic(drs[1] as string)}`} className="font-bold dark:hover:bg-zinc-700 dark:bg-zinc-600 hover:bg-zinc-300 bg-zinc-20 p-1 px-3 rounded transition-all whitespace-nowrap w-full text-center flex justify-center">التحضير جاهز, هنا!</Link>}</td>
-          :
-          <td key={randomInt(100000)} className="bg-zinc-300 dark:bg-zinc-500 p-1 text-center border border-collapse border-zinc-700">
-            <SendReq key={42} title="طلب الحصول على التحضير." secretId={"1145036551"} err={true} maxAge={10} msg={`طلب الحصول على التحضير لمادة ال${drs[1]}.`} unieq={GetEnglishSubjectAsArabic(drs[1])} 
-                    style="font-bold dark:hover:bg-zinc-800 dark:bg-zinc-700
-                          hover:bg-zinc-300 bg-zinc-20 p-1 px-3 rounded 
-                          transition-all whitespace-nowrap w-full text-center 
-                          flex justify-center gap-3"/>
-            </td>} */}
+      {drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.length < 100 
+        ?
+        <>
+        <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
+        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
+        <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+        </>
+        : 
+        <>
+          <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px text-yellow-400">{num}</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px text-yellow-400">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal text-yellow-400">المحتوى كبير, انقر على زر التفاصيل.</td>
+          <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal text-yellow-400">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-yellow-700 hover:bg-yellow-800 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+        </>
+      }
+      
+          
+
+          
       </tr>
     )
   })
   return x
 }
 export default async function HomeWork() {
-  const TelegramApiDate: {data: string, setted: boolean} = await GetDateFromTelegram() as {data: string, setted: boolean}
+  const TelegramApiDate: {data: string, setted: boolean, message?:string} = await GetDateFromTelegram() as {data: string, setted: boolean, message?:string}
   const toDayIs = new Date(TelegramApiDate.data).getDay()+1
   return (
     <div>
-      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : null}
-      <div className="mx-auto w-fit text-center mt-6">
-        <h1 className="text-3xl font-bold">جدول التحاضير اليومية.</h1>
+      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : TelegramApiDate.setted === false && TelegramApiDate.data === null ? redirect(`/social?alert=${TelegramApiDate.message}`) : null}
+      <div className="mx-auto w-fit text-center">
+        <h1 className="text-3xl">جدول التحاضير اليومية.</h1>
         <h1 className="text-lg font-bold dark:font-light mt-1 ">للصف الخامس الاعدادي, د.</h1>
         <h1 className="text-xl font-bold dark:font-light mt-5">تاريخ اليوم: {GetCurrentTimeArabicWithStyle(TelegramApiDate.data, {weekday: 'long', year: 'numeric', month: '2-digit', day: '2-digit'})}.</h1>
       </div>

@@ -1,13 +1,16 @@
+import Exam from "@/components/pages/Exam"
 import { Metadata } from "next"
-import Exam from '@/components/pages/Exam'
-export const metadata: Metadata = {
-  title: 'جدول الامتحانات الشهرية.',
-  description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
+
+export function generateMetadata({ searchParams }: {searchParams: {[key: string]:number}}): Metadata {
+  return {
+    title: `جدول الامتحانات الشهرية${+searchParams.month === 1 ? ", الشهر الاول" : +searchParams.month === 2 ? ", الشهر الثاني" : ""}.`,
+    description: 'هذا الجدول للصف الخامس الاعدادي للشعبة د, لمدرسة الامام الحسين (ع). من اعمال ZVINZV, وجميع الحقوق تعود للطالب مرتضى ظافر هادي',
+  }
 }
-export default function page() {
+export default function page({searchParams} : {searchParams: {[key: string] : number}}) {
   return (
     <>
-      <Exam />
+      <Exam monthId={+searchParams.month}/>
     </>
   )
 }

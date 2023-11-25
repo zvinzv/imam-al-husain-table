@@ -32,7 +32,7 @@ export default function Setting() {
   }
   const [states, dispatch] = useReducer(reducer, initState)
   return (
-    <div className="mt-4">
+    <div className="">
       <h1 className="text-center text-3xl mb-4">الاعدادات الرئيسية</h1>
       <div className="max-w-lg mx-auto px-5">
         <h1 className="text-right text-2xl my-2">الكوكيز :</h1>
