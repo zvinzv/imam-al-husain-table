@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'تحضير مثال الرابع وبعد اكو شكم شغلة ما اعرفهن, يرجى التبليغ.',
+          name: 'تحضير حل تمارين الفصل الثالث.',
           sure: {
             name: "مرتضى ظافر", 
             logic: false
