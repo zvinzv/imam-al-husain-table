@@ -1,7 +1,11 @@
 import { Post, News } from "@/data/News"
-import SaveToCookies from "@/func/SaveToCookiesNews"
+import GetDateFromTelegram from "@/func/GetDateFromTelegram"
+import SaveToCookies from "@/func/SaveToCookies"
+import SaveToCookiesNews from "@/func/SaveToCookiesNews"
+
 import { Metadata } from "next"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 export const metadata: Metadata = {
   title: 'الاخبار.',
   description: 'هذه الصفحة تحتوي على آخر الاخبار على الموقع.',
@@ -26,14 +30,17 @@ const newPost = (post:number,text:string, desc1:string, desc2: string, date: str
     </div>
   )
 }
-export default function page() {
+export default async function page() {
+  const TelegramApiDate: {data:string, setted: boolean, message?: string} = await GetDateFromTelegram() as {data:string, setted: boolean, message?: string}
+  const filteredNewsLength = News.filter(e => new Date(TelegramApiDate.data) < new Date(e.datePost)).length
   return (
     <div className='text-center relative px-5'>
+      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : TelegramApiDate.setted === false && TelegramApiDate.data === null ? redirect(`/social?alert=${TelegramApiDate.message}`) : null}
       <h1 className='text-3xl'>آخر الاخبار تُنشر هنا!</h1>
       <h1 className='text-lg my-2'>اخبار مدرسة الامام الحسين (ع), للصف الخامس الاعدادي.</h1>
       <div className='flex flex-col gap-2'>
-        {<SaveToCookies postNumb={News.length}/>}
-        {News.reverse().map((post:Post) => newPost(post.id, post.text, post.desc1, post.desc2, post.date, {name: post.btnData.name, link: post.btnData.link}))}
+        {<SaveToCookiesNews postNumb={filteredNewsLength}/>}
+        {News.map((post:Post) =>  new Date(TelegramApiDate.data) > new Date(post.datePost) ? null : newPost(post.id, post.text, post.desc1, post.desc2, post.date, {name: post.btnData.name, link: post.btnData.link}) )}
       </div>
     </div>
   )

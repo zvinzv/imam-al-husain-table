@@ -100,7 +100,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الثاني - لم يحدد بعد.",
+        name: "امتحان الشهر الثاني - الفصل الثالث والفصل الرابع.",
         accessories: [
           {
             id: 1,
@@ -113,7 +113,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       }
@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `قواعد: التوابع, العطف.`,
+        name: `ادب: الوحدة الخامسة كاملة, مع القصيدة 6 ابيات.`,
         accessories: [
           {
             id: 1,
@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'مراجعة الي اخذناه.',
+          name: 'تحضير مثال الرابع وبعد اكو شكم شغلة ما اعرفهن, يرجى التبليغ.',
           sure: {
             name: "مرتضى ظافر", 
             logic: false
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'الفصل الثاني - من مراحل التنفس حتى تنفس النباتات داخل.',
+        name: 'الفصل الثاني - من التنفس في النباتات حتى تنفس في الافقريات ما داخل, مع رسم صفحة 66 شكل 2-5 اعلى يسار الصفحة.',
         accessories: [
           {
             id: 1,

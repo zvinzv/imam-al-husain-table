@@ -4,11 +4,16 @@ import 'remixicon/fonts/remixicon.css'
 import {NavigationLink} from "@/data/NavigationLink"
 import { cookies } from "next/headers";
 import { News } from "@/data/News";
+import SaveToCookies from "@/func/SaveToCookies";
+import GetDateFromTelegram from "@/func/GetDateFromTelegram";
+import { redirect } from "next/navigation";
 
 
-const Navigation = ({children}: {children: React.ReactNode}) => {
+const Navigation = async ({children}: {children: React.ReactNode}) => {
+  const TelegramApiDate: {data:string, setted: boolean, message?: string} = await GetDateFromTelegram() as {data:string, setted: boolean, message?: string}
   const cookie = cookies().get("newsVisited")
-  const postNumber = cookie !== undefined && JSON.parse(cookie?.value as string).postNumb
+  const postNumber = cookie !== undefined ? JSON.parse(cookie?.value as string).postNumb : 0
+  const filteredNewsLength = News.filter(e => new Date(TelegramApiDate.data) < new Date(e.datePost)).length
   const MainIcon = ({children, i}:{children: React.ReactNode, i: typeof NavigationLink[0]}) => {
     return(
       <Link key={i.id} href={i.href} className={`border-[1px] ss dark:hover:bg-zinc-600 dark:bg-zinc-500  hover:bg-zinc-300 bg-zinc-200 p-3 leading-none rounded-xl transition-all relative group/icon flex items-center justify-center flex-grow`}> 
@@ -21,6 +26,7 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
   return (
     
     <div className="m">
+      {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : TelegramApiDate.setted === false && TelegramApiDate.data === null ? redirect(`/social?alert=${TelegramApiDate.message}`) : null}
       <div className="m-5">
         <nav className={` bg-zinc-400 h-16 w-full max-w-lg mx-auto flex justify-center items-center dark:bg-zinc-700 rounded-xl p-3 `}>
             <div dir="ltr" className="text_en flex flex-col justify-center items-center gap-1">
@@ -36,14 +42,14 @@ const Navigation = ({children}: {children: React.ReactNode}) => {
             <ul className="text_en text-2xl flex justify-start items-center gap-3 w-fit menu rounded-lg flex-wrap">
               {NavigationLink.map(i => {
                 return(
-                  i.href === "/news" && cookie === undefined 
+                  i.href === "/news" && cookie === undefined && filteredNewsLength != 0
                   ?
                     <MainIcon key={i.id} i={i}>
-                      <span className="noficationDot bg-red-500 text-white font-bold">{News.length > 9 ? "+9" : News.length}</span>
+                      <span className="noficationDot bg-red-500 text-white font-bold">{filteredNewsLength > 9 ? "+9" : filteredNewsLength}</span>
                     </MainIcon>  
                   : i.href === "/news" && cookie !== undefined ?
                     <MainIcon key={i.id} i={i}>
-                      {News.length - postNumber > 9 ? <span className="noficationDot bg-red-500 text-white font-bold">+9</span> : News.length - postNumber > 0 ? <span className="noficationDot bg-red-500 text-white font-bold">{News.length - postNumber}</span> : null }
+                      {filteredNewsLength - postNumber > 9 ? <span className="noficationDot bg-red-500 text-white font-bold">+9</span> : filteredNewsLength - postNumber > 0 ? <span className="noficationDot bg-red-500 text-white font-bold">{filteredNewsLength - postNumber}</span> : null }
                     </MainIcon>
                   :
                     <MainIcon key={i.id} i={i}> </MainIcon>

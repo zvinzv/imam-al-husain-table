@@ -178,6 +178,13 @@ export default async function Exam({monthId}:{monthId:number}) {
         date: "2023-11-30",
         day: "الخميس",
         subject: "حاسوب"
+      },
+      {
+        id: 24,
+        monthId: 2,
+        date: "2023-12-06",
+        day: "الاربعاء",
+        subject: "رياضيات"
       }
     ],
   }
@@ -241,7 +248,7 @@ export default async function Exam({monthId}:{monthId:number}) {
         </table>
       </div>
       <div className="flex flex-col gap-3 items-center">
-        <h1 className="text-md font-bold">{+monthId === 1 ? "اخر تحديث: 2023-11-08." : +monthId === 2 ? "اخر تحديث: 2023-11-25." : ""}</h1>
+        <h1 className="text-md font-bold">{+monthId === 1 ? "اخر تحديث: 2023-11-08." : +monthId === 2 ? "اخر تحديث: 2023-11-26." : ""}</h1>
         <div className="mb-5">
           {<SendReq key={3} secretId={"1145036551"} err={true} maxAge={10} msg={`تصحيح جدول الامتحانات${+monthId === 1 ? " شهر الاول" : +monthId === 2 ? " شهر الثاني" : ""}.`} unieq="Exam"/>}
         </div>
