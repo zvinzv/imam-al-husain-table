@@ -4,23 +4,34 @@ import { useRouter,useSearchParams } from "next/navigation"
 
 export default function RedirectList({keyN, content}:{keyN: number, content: string}) {
   const router = useRouter()
-  const path = +useSearchParams().getAll("month")
+  const monthNum = +useSearchParams().getAll("month")
+  const visibleBol = useSearchParams().getAll("showHoliday")[0]
   const [show, setShow] = useState(false)
-  const red = (pageNum: number) => {
-    router.push(pageNum ? `/exam?month=${pageNum}` : `/exam`)
+  const month = (pageNum: number, pageBol: string) => {
+    router.push(`/exam?month=${pageNum ? pageNum : monthNum}&showHoliday=${pageBol ? pageBol : visibleBol}`)
     setShow(false)
   }
   const F = () => {
     return (
-      <div className={`absolute m-1 shadow-lg border border-zinc-700 p-1 left-0 top-7 rounded-md bg-zinc-600 flex gap-2 justify-center items-center text-black font-bold transition-all`}>
-        <div className="flex w-fit items-center justify-center gap-3">
-          <select name="" id="table" value={path ? path : "0"} onChange={(e) => red(+e.target.value)} className="bg-zinc-300 cursor-pointer border border-zinc-500 p-1 px-2 rounded-md text-center outline-none">
-            <option value="0" className="p-2 font-bold outline-none border-none text-right" disabled hidden>الاعتمد على:</option>
-            <option           className="p-2 font-bold outline-none border-none text-right">الكل.</option>
-            <option value="1" className="p-2 font-bold outline-none border-none text-right">الاول.</option>
-            <option value="2" className="p-2 font-bold outline-none border-none text-right">الثاني.</option>
-          </select>
-        </div>
+      <div className={`absolute m-1 z-10 shadow-lg border border-zinc-700 p-2 left-0 top-7 rounded-md bg-zinc-600 flex gap-2 justify-center items-center text-black font-bold transition-all`}>
+        <main className="flex flex-col gap-2">
+          <div className="flex w-full items-center justify-center gap-3">
+            <label htmlFor="table" className="whitespace-nowrap text-white flex-1">تنظيم الشهر</label>
+            <select name="" id="table" value={monthNum ? monthNum : "0"} onChange={(e) => month(+e.target.value, visibleBol)} className="bg-zinc-300 cursor-pointer border border-zinc-500 p-1 px-2 rounded-md text-center outline-none">
+              <option className="p-2 font-bold outline-none border-none text-right" disabled hidden>اختر واحد:</option>
+              <option value="1" className="p-2 font-bold outline-none border-none text-right">الاول.</option>
+              <option value="2" className="p-2 font-bold outline-none border-none text-right">الثاني.</option>
+            </select>
+          </div>
+          <div className="flex w-full items-center justify-center gap-3">
+            <label htmlFor="table" className="whitespace-nowrap text-white flex-1">ايام الراحة</label>
+            <select name="" id="table" value={visibleBol ? visibleBol : "true"} onChange={(e) => month(monthNum,e.target.value)} className="bg-zinc-300 cursor-pointer border border-zinc-500 p-1 px-2 rounded-md text-center outline-none">
+              <option value="0" className="p-2 font-bold outline-none border-none text-right" disabled hidden>اختر واحد:</option>
+              <option value="true" className="p-2 font-bold outline-none border-none text-right">اظهار.</option>
+              <option value="false" className="p-2 font-bold outline-none border-none text-right">اخفاء.</option>
+            </select>
+          </div>
+        </main>
       </div>
     )
   }

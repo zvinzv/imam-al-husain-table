@@ -16,12 +16,14 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
+.theme2 {
+  height: 100%;
   width: 100%;
   overflow-x: hidden;
+  transition: 200ms all ease-in-out;
 }
+
+
 .text_en {
   font-family: 'Montserrat', sans-serif;
 }
@@ -110,15 +112,6 @@ body {
 
 }
 
-/* .noDot::after{
-  content: '';
-  position: absolute;
-  width: 0px !;
-  height: 0px;
-  background: transparent !important;
-  top: -4px;
-  right: -4px;
-} */
 
 .ss{
   animation: pulse2 2s alternate infinite linear;
@@ -126,9 +119,21 @@ body {
 
 @keyframes pulse2 {
   0%{
-    border-color: transparent;
+    border-color: rgba(255, 255, 255, 0.276);
   }
   100%{
-    border-color: rgba(228, 228, 231, 0.298);
+    border-color: transparent;
+  }
+}
+.moving{
+  animation: moving 2s alternate infinite ease-in-out;
+}
+
+@keyframes moving {
+  0%{
+    transform: translate(300%);
+  }
+  100%{
+    transform: translate(0%);
   }
 }

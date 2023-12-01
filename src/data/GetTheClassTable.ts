@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `ادب: الوحدة الخامسة كاملة, مع القصيدة 6 ابيات.`,
+        name: `قواعد: التوابع, العطف.`,
         accessories: [
           {
             id: 1,
@@ -490,7 +490,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'من الطقس القاسي الى نهاية الفصل.',
+        name: 'من صفحة 34 الى 39 ما داخل, مع حل اسئله الفصل الاول.',
         accessories: [
           {
             id: 1,
@@ -555,7 +555,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'سورة المؤمنون.',
+        name: 'الموضوع الذي يلي الحديث, مع حل مناقشة السورة والحديث.',
         accessories: [
           {
             id: 1,
@@ -574,7 +574,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الثاني - فصل الاول والثاني",
+        name: "امتحان الشهر الثاني - لم يحدد بعد.",
         accessories: [
           {
             id: 1,
@@ -619,7 +619,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'اكسل - من 29 الى 32 داخل.',
+        name: 'من صفحة 34 الى صفحة 36.',
         accessories: [
           {
             id: 1,
@@ -632,7 +632,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       },

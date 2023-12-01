@@ -1,5 +1,6 @@
 export type Post = {
   id: number,
+  corner: string,
   text: string,
   desc1: string,
   desc2: string,
@@ -10,23 +11,22 @@ export type Post = {
     link: string
   }
 }
-export const News: Post[] = [
-  {
-    id: 1,
-    text: "امتحان حاسوب.",
-    desc1: "امتحان حاسوب الشهر الثاني.",
-    desc2: "بتاريخ: 30-11-2023, الخميس.",
-    date: "2023-11-24, الجمعة.",
-    datePost: "2023-11-30",
-    btnData: {name: "التفاصيل", link: "/home-work/pc"}
-  },
-  {
-    id: 2,
-    text: "امتحان رياضيات.",
-    desc1: "امتحان رياضيات الشهر الثاني.",
-    desc2: "بتاريخ: 06-12-2023, الاربعاء.",
-    date: "2023-11-26, الاحد.",
-    datePost: "2023-12-06",
-    btnData: {name: "التفاصيل", link: "/home-work/math"}
-  },
-].reverse()
+class NewPost{
+  private static  data: Post[] = []
+  private static   post: number = 1
+  constructor(public dataInsert: Omit<Post, "id">){
+    NewPost.data.push({id: NewPost.post++,...dataInsert})
+  }
+  static getData(){
+    return NewPost.data
+  }
+  static editPost(id:number, data:Partial<Omit<Post, "id">>): void{
+    const indexOfSelect = NewPost.data.filter(e=>e.id === id)[0]
+    const indexOfData = NewPost.data.indexOf(indexOfSelect)
+    indexOfSelect ? NewPost.data[indexOfData] = {...indexOfSelect, ...data} : null
+  }
+}
+new NewPost({    text: "تم تحديد امتحانات الشهر الثاني.",  corner: "I",  desc1: "جدول امتحانات الشهر الثاني.",   desc2: "بتاريخ: 03-12-2023, الأحد حتى 2023-12-24, الأحد.",   date: "2023-11-29, الاربعاء.",    datePost: "2023-12-02",   btnData: {name: "التفاصيل", link: "/exam?month=2"}},)
+
+const allPost =  NewPost.getData()
+export const News = allPost

@@ -15,10 +15,11 @@ type Exam ={
   monthId:      number
 }
 
-export default async function Exam({monthId}:{monthId:number}) {
+export default async function Exam({monthId, showHoliday}:{monthId:number, showHoliday: string}) {
   const TelegramApiDate: {data:string, setted: boolean, message?: string} = await GetDateFromTelegram() as {data:string, setted: boolean, message?: string}
   // Get valide date 'YYYY-MM-DD'
   // -1 mean remove 1 day
+  // console.log(showHoliday)
   const CorrectDate= GetCorrectDate(TelegramApiDate.data,-1)
   // 0 mean remove 0 day
   const CurrentDate = GetCorrectDate(TelegramApiDate.data,0)
@@ -182,9 +183,180 @@ export default async function Exam({monthId}:{monthId:number}) {
       {
         id: 24,
         monthId: 2,
+        date: "2023-12-01",
+        day: "الجمعة",
+        subject: "راحة"
+      },
+      {
+        id: 25,
+        monthId: 2,
+        date: "2023-12-02",
+        day: "السبت",
+        subject: "راحة"
+      },
+      {
+        id: 26,
+        monthId: 2,
+        date: "2023-12-03",
+        day: "الاحد",
+        subject: "راحة"
+      },
+      {
+        id: 27,
+        monthId: 2,
+        date: "2023-12-04",
+        day: "الاثنين",
+        subject: "راحة"
+      },
+      {
+        id: 28,
+        monthId: 2,
+        date: "2023-12-05",
+        day: "الثلاثاء",
+        subject: "راحة"
+      },
+      {
+        id: 29,
+        monthId: 2,
         date: "2023-12-06",
         day: "الاربعاء",
         subject: "رياضيات"
+      }
+      ,
+      {
+        id: 30,
+        monthId: 2,
+        date: "2023-12-07",
+        day: "الخميس",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 31,
+        monthId: 2,
+        date: "2023-12-08",
+        day: "الجمعة",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 32,
+        monthId: 2,
+        date: "2023-12-09",
+        day: "السبت",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 33,
+        monthId: 2,
+        date: "2023-12-10",
+        day: "الاحد",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 34,
+        monthId: 2,
+        date: "2023-12-11",
+        day: "الاثنين",
+        subject: "أدب"
+      }
+      ,
+      {
+        id: 35,
+        monthId: 2,
+        date: "2023-12-12",
+        day: "الثلاثاء",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 36,
+        monthId: 2,
+        date: "2023-12-13",
+        day: "الخميس",
+        subject: "قواعد"
+      }
+      ,
+      {
+        id: 37,
+        monthId: 2,
+        date: "2023-12-14",
+        day: "الجمعة",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 38,
+        monthId: 2,
+        date: "2023-12-15",
+        day: "السبت",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 39,
+        monthId: 2,
+        date: "2023-12-16",
+        day: "الاحد",
+        subject: "الأحياء"
+      }
+      ,
+      {
+        id: 40,
+        monthId: 2,
+        date: "2023-12-17",
+        day: "الاثنين",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 41,
+        monthId: 2,
+        date: "2023-12-18",
+        day: "الثلاثاء",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 42,
+        monthId: 2,
+        date: "2023-12-19",
+        day: "الاربعاء",
+        subject: "فيزياء"
+      }
+      ,
+      {
+        id: 43,
+        monthId: 2,
+        date: "2023-12-20",
+        day: "الخميس",
+        subject: "علم الارض"
+      }
+      ,
+      {
+        id: 44,
+        monthId: 2,
+        date: "2023-12-21",
+        day: "الجمعة",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 45,
+        monthId: 2,
+        date: "2023-12-22",
+        day: "السبت",
+        subject: "راحة"
+      }
+      ,
+      {
+        id: 46,
+        monthId: 2,
+        date: "2023-12-23",
+        day: "الأحد",
+        subject: "الكيمياء"
       }
     ],
   }
@@ -197,7 +369,6 @@ export default async function Exam({monthId}:{monthId:number}) {
   return (
     <div>
       {TelegramApiDate.setted === true ? <SaveToCookies data={TelegramApiDate.data}/> : TelegramApiDate.setted === false && TelegramApiDate.data === null ? redirect(`/social?alert=${TelegramApiDate.message}`) : null}
-
       <div className="mx-auto w-fit text-center">
       <h1 className="text-3xl"><span>جدول الامتحانات الشهرية.</span></h1>
       <h1 className="text-lg font-bold dark:font-light mt-1">للصف الخامس الاعدادي{+monthId === 1 ? ", الشهر الاول" : +monthId === 2 ? ", الشهر الثاني" : ""}.</h1>
@@ -216,18 +387,18 @@ export default async function Exam({monthId}:{monthId:number}) {
           </thead>
           <tbody>
           
-            {data.body.filter(card => monthId ? card.monthId === +monthId : card).length == 0 ?
+            {data.body.filter(card => card.monthId === +monthId && card.subject !== "راحة").length == 0 ?
               <tr>
                 <td colSpan={4} className={` dark:bg-zinc-400 dark:text-black text-xl p-1 px-2 text-center border border-zinc-700 `}>لا يوجد امتحان حتى الان.</td>
               </tr>
-                  : data.body.filter(card => monthId ? card.monthId === +monthId : card).map((H, i) => {
+                  : data.body.filter(card => (monthId > 0 && monthId < 3) && showHoliday === "false" ? (card.monthId === monthId && card.subject !== "راحة") : monthId > 0 && showHoliday === "true" ? (card.monthId === monthId) : card).map((H, i) => {
               if (H.date === CurrentDate){
                 return(
                   <tr key={i}>
                     <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-zinc-700`}>{H.day}</td>
                     <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.date}</td>
                     <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.subject}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.subject}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.monthId === 1 ? "الاول" : H.monthId === 2 ? "الثاني" : "الثالث"}</td>
                   </tr>
                 )
               }else if (H.date !== CurrentDate){
@@ -248,7 +419,7 @@ export default async function Exam({monthId}:{monthId:number}) {
         </table>
       </div>
       <div className="flex flex-col gap-3 items-center">
-        <h1 className="text-md font-bold">{+monthId === 1 ? "اخر تحديث: 2023-11-08." : +monthId === 2 ? "اخر تحديث: 2023-11-26." : ""}</h1>
+        <h1 className="text-md font-bold">{+monthId === 1 ? "اخر تحديث: 2023-11-08." : +monthId === 2 ? "اخر تحديث: 2023-11-29." : ""}</h1>
         <div className="mb-5">
           {<SendReq key={3} secretId={"1145036551"} err={true} maxAge={10} msg={`تصحيح جدول الامتحانات${+monthId === 1 ? " شهر الاول" : +monthId === 2 ? " شهر الثاني" : ""}.`} unieq="Exam"/>}
         </div>

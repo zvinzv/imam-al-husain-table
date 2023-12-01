@@ -1,5 +1,6 @@
 import Exam from "@/components/pages/Exam"
 import { Metadata } from "next"
+import { redirect } from "next/navigation"
 
 export function generateMetadata({ searchParams }: {searchParams: {[key: string]:number}}): Metadata {
   return {
@@ -8,9 +9,10 @@ export function generateMetadata({ searchParams }: {searchParams: {[key: string]
   }
 }
 export default function page({searchParams} : {searchParams: {[key: string] : number}}) {
+  if (isNaN(+searchParams.month) || searchParams.showHoliday === undefined) redirect("/exam?month=2&showHoliday=true")
   return (
     <>
-      <Exam monthId={+searchParams.month}/>
+      <Exam monthId={+searchParams.month} showHoliday={searchParams.showHoliday.toString()}/>
     </>
   )
 }

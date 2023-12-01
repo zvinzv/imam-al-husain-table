@@ -61,7 +61,7 @@ export default function PopUp({clearWidget, explain, mainFunction}:{clearWidget:
             </form>
           </div>
         </div>
-        <div className="absolute bg-black/30 h-screen w-full -z-10 transition-all"></div>
+        <div className="absolute bg-black/80 h-screen w-full -z-10 transition-all"></div>
       </div>}
     </div>
     

@@ -6,6 +6,6 @@ export const metadata: Metadata = {
 }
 export default function page({searchParams}:{searchParams:{[key:string] : string}}) {
   return (
-    <HomeWork all={searchParams.more === "true" ? true : false}/>  
+    <HomeWork subject={searchParams.more === "true" ? true : false}/>  
   )
 }
