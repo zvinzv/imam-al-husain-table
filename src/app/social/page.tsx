@@ -16,12 +16,12 @@ export default function page({searchParams} : {searchParams: {[key: string] : st
         </span>
       </div>
       <h1 className='text-center text-2xl'>تواصل مع المطور على المواقع التالية</h1>
-      <div className='flex w-full flex-row flex-wrap gap-3 max-w-lg mx-auto mt-5'>
-        <a href="http://t.me/ZVINZV" className='w-52 flex items-center flex-grow gap-3 bg-sky-600 hover:bg-sky-500 transition-all p-3 px-4 rounded-lg' target='_blank'>
+      <div className='flex w-full flex-row flex-wrap gap-3 max-w-lg mx-auto mt-5 text-white'>
+        <a href="http://t.me/ZVINZV" className='w-52 flex items-center flex-grow gap-3 bg-sky-600 hover:bg-sky-500 transition-all p-3 px-4 rounded-lg drop-shadow-xl' target='_blank'>
           <i className="ri-telegram-fill font-normal text-3xl group-hover/link:text-zinc-400"></i>
           <span className='font-bold'>التليكرام.</span>
         </a>
-        <a href="https://www.instagram.com/x748a/" className='w-52 flex items-center flex-grow gap-3 bbb p-3 px-4 rounded-lg transition-all' target='_blank'>
+        <a href="https://www.instagram.com/x748a/" className='w-52 flex items-center flex-grow gap-3 bbb p-3 px-4 rounded-lg transition-all drop-shadow-xl' target='_blank'>
           <i className="ri-instagram-line font-normal text-3xl"></i>
           <span className='font-bold'>الانستقرام.</span>
         </a>

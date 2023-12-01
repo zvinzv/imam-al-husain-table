@@ -12,7 +12,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="ar" dir='rtl'>
       <body className={`${inter2.variable} ${inter.variable} `}>
         <ThemeProvider old={ReturnCookeisServer("darkMode")}>
-              <div className='text_ar dark:text-white text-black bg-zinc-300 dark:bg-zinc-900 transition-colors font-bold theme2'>
+              <div className='text_ar dark:text-white text-black bg-stone-300 dark:bg-stone-900 transition-colors font-bold theme2'>
                 <Navigation> 
                   {children}
                 </Navigation>

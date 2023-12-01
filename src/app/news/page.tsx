@@ -11,8 +11,8 @@ const newPost = (corner: string,post:number,text:string, desc1:string, desc2: st
   return(
     <div key={post} className='flex justify-center '>
       
-      <div className='min-h-36 max-w-sm w-full relative border-zinc-900 bg-zinc-200/25 dark:bg-zinc-700/25 dark:shadow-zinc-800 shadow-2xl rounded-xl p-4 overflow-hidden'>
-        <div className="h-full w-full absolute top-0 left-0 border border-zinc-700/70 bg-transparent animate-pulse rounded-xl"></div>
+      <div className='min-h-36 max-w-sm w-full relative border-stone-900 bg-stone-200/25 dark:bg-stone-700/25 dark:shadow-zinc-800 shadow-2xl rounded-xl p-4 overflow-hidden'>
+        <div className="h-full w-full absolute top-0 left-0 border border-stone-700/70 bg-transparent animate-pulse rounded-xl"></div>
         <div className='relative flex flex-col gap-2 justify-evenly w-full'>
           <div className="absolute w-52 h-52 top-20 -left-32 blur-3xl text-4xl font-bold animate-pulse  dark:bg-white/10 bg-black/20 rounded-full"></div>
           {/* <div className="absolute w-52 h-52 top-20 left-10  text-4xl font-bold opacity-10 bg-white rounded-full"></div> */}
@@ -24,7 +24,7 @@ const newPost = (corner: string,post:number,text:string, desc1:string, desc2: st
             <h2 className='w-3/4 h-fit rounded-sm text-right'></h2>
           </div>
           <div className="flex justify-between items-end">
-            <Link href={btnData.link} className='w-fit rounded-md bg-zinc-300/10 hover:bg-zinc-300/20 px-3 py-1 shadow-md shadow-zinc-800 transition'>{btnData.name}</Link>
+            <Link href={btnData.link} className='w-fit rounded-md bg-stone-300/10 hover:bg-stone-300/20 px-3 py-1 shadow-md shadow-zinc-800 transition'>{btnData.name}</Link>
             <h5 dir="ltr" className='text-sm rounded-md font-bold text-zinc-500'>{date as string}</h5>
           </div>
         </div>

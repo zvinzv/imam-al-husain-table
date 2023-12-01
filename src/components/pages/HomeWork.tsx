@@ -20,33 +20,33 @@ const MakeTable = (TO_DAY_AS_NUMBER:number, subject:boolean) => {
       {drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.length < 100
         ?
         <>
-        <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal text-xs sm:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+        <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal text-sm md:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-stone-400 hover:bg-stone-500 hover:text-stone-200 dark:bg-stone-600 dark:hover:bg-stone-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
         </>
         : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.length > 100 && subject
         ?
         <>
-        <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal text-xs sm:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+        <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal text-sm md:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-stone-400 hover:bg-stone-500 hover:text-stone-200 dark:bg-stone-600 dark:hover:bg-stone-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
         </>
         :  drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.length > 100 && !subject ?
         <>
         
-          <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px text-yellow-400">{num}</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px text-yellow-400">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal text-yellow-400">المحتوى كبير <Link href={`/home-work?more=true`} className='underline underline-offset-[2px] hover:text-blue-500'>انقر هنا</Link> للعرض كاملاً.</td>
-          <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal text-yellow-400">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-yellow-700 hover:bg-yellow-800 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+          <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px text-yellow-700 dark:text-yellow-400">{num}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px text-yellow-700 dark:text-yellow-400">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal text-yellow-700 dark:text-yellow-400 text-sm md:text-base">المحتوى كبير <Link href={`/home-work?more=true`} className='underline underline-offset-[2px] hover:text-blue-500'>انقر هنا</Link> للعرض كاملاً.</td>
+          <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal text-yellow-700 dark:text-yellow-400">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-yellow-700 hover:bg-yellow-800 text-yellow-400 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
         </>
         :
         <>
-        <td className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{num}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-center border border-collapse border-zinc-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-1 px-2 text-right border border-collapse border-zinc-700 whitespace-normal text-xs sm:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
-        <td className="bg-zinc-300 dark:bg-zinc-500 p-2 px-2 text-center border border-collapse border-zinc-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-zinc-600 hover:bg-zinc-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
+        <td className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{num}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-center border border-collapse border-stone-700 w-px">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.ar}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-1 px-2 text-right border border-collapse border-stone-700 whitespace-normal text-sm md:text-base">{drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name.endsWith(".") ? drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name : drsAndDay(num, TO_DAY_AS_NUMBER)[0].dailyPreparation.name + "."}</td>
+        <td className="bg-stone-300 dark:bg-stone-500 p-2 px-2 text-center border border-collapse border-stone-700 whitespace-normal">{<Link href={`/home-work/${drsAndDay(num, TO_DAY_AS_NUMBER)[0].subject.en}`} className='bg-stone-400 hover:bg-stone-500 hover:text-stone-200 dark:bg-stone-600 dark:hover:bg-stone-700 px-2 py-1 rounded text-sm transition-all'>التفاصيل</Link>}</td>
         </>
     }
       </tr>
@@ -69,13 +69,13 @@ export default async function HomeWork({subject}: {subject:boolean}) {
           <table className="table-auto w-full font-bold">
             <thead>
               <tr>
-                {["ت", "المادة", "التحضير", "التفاصيل"].map((head:string) => <th key={head} className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700">{head}</th> )}
+                {["ت", "المادة", "التحضير", "التفاصيل"].map((head:string) => <th key={head} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700">{head}</th> )}
               </tr>
             </thead>
             <tbody>
                   {MakeTable(toDayIs, subject)}
                   <tr>
-                    <td colSpan={4} className="bg-zinc-400 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
+                    <td colSpan={4} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700"><span className="tracking-wider">{ThisTableForAnyDayOfWeek(toDayIs)}</span>, <span>{GetCorrectDate(TelegramApiDate.data, toDayIs == 6 ? 2 : toDayIs == 7 ? 1 : 0).toString().split("-").reverse().join("-")}</span>.</td>
                   </tr>
             </tbody>
           </table>

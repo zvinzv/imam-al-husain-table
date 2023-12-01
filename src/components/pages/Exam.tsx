@@ -5,17 +5,20 @@ import SaveToCookies from "@/func/SaveToCookies"
 import { redirect } from "next/navigation"
 import 'remixicon/fonts/remixicon.css'
 import RedirectList from "../RedirectList"
+import RedirectListSubject from "../RedirectListSubject"
+import GetArabicSubjectFromEnglish from "@/func/GetArabicSubjectFromEnglish"
+// import GetArabicSubjectFromEnglish from "@/func/GetArabicSubjectFromEnglish"
 
 type Exam ={ 
   id:        number,
   day:       string,
   date:      string,
-  subject:   string,
+  subject:   "احياء" | "كيمياء" | "فيزياء" | "عربي" | "رياضيات" | "انكليزي" | "فنية" | "اسلامية" | "أرض" | "حاسوب" | "ادب" | "قواعد" | "راحة",
   done?:      boolean
   monthId:      number
 }
 
-export default async function Exam({monthId, showHoliday}:{monthId:number, showHoliday: string}) {
+export default async function Exam({monthId, showHoliday, subject}:{monthId:number, showHoliday: boolean | undefined, subject:string}) {
   const TelegramApiDate: {data:string, setted: boolean, message?: string} = await GetDateFromTelegram() as {data:string, setted: boolean, message?: string}
   // Get valide date 'YYYY-MM-DD'
   // -1 mean remove 1 day
@@ -32,7 +35,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 1,
         date:"2023-10-29",
         day:"الأحد",
-        subject:"إسلامية",
+        subject:"اسلامية",
         done: true
       },
       {
@@ -40,7 +43,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 1,
         date:"2023-10-30",
         day:"الاثنين",
-        subject:"الادب والنصوص",
+        subject:"ادب",
         done: true
       },
       {
@@ -91,7 +94,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 1,
         date:"2023-11-06",
         day:"الاثنين",
-        subject:"قواعد اللغة العربية",
+        subject:"قواعد",
       },
       {
         id:10,
@@ -172,6 +175,13 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         date:"2023-11-19",
         day:"الأحد",
         subject:"احياء",
+      },
+      {
+        id: 999,
+        monthId: 1,
+        date: "2023-11-22",
+        day: "الاربعاء",
+        subject: "أرض"
       },
       {
         id: 23,
@@ -260,7 +270,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 2,
         date: "2023-12-11",
         day: "الاثنين",
-        subject: "أدب"
+        subject: "ادب"
       }
       ,
       {
@@ -300,7 +310,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 2,
         date: "2023-12-16",
         day: "الاحد",
-        subject: "الأحياء"
+        subject: "احياء"
       }
       ,
       {
@@ -332,7 +342,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 2,
         date: "2023-12-20",
         day: "الخميس",
-        subject: "علم الارض"
+        subject: "أرض"
       }
       ,
       {
@@ -356,7 +366,7 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
         monthId: 2,
         date: "2023-12-23",
         day: "الأحد",
-        subject: "الكيمياء"
+        subject: "كيمياء"
       }
     ],
   }
@@ -374,41 +384,61 @@ export default async function Exam({monthId, showHoliday}:{monthId:number, showH
       <h1 className="text-lg font-bold dark:font-light mt-1">للصف الخامس الاعدادي{+monthId === 1 ? ", الشهر الاول" : +monthId === 2 ? ", الشهر الثاني" : ""}.</h1>
       </div>
       <div >
-        {/* <RedirectList /> */}
         <table className="table-fixed m-2 mx-auto font-bold">
           <thead>
             <tr>
               {data.head.map((H:string, i)=> {
                 return(
-                  H === "الشهر" ? <RedirectList key={i} keyN={i} content={H}/> : <th key={i} className="bg-zinc-200 dark:bg-zinc-600 p-1 px-2 text-center border border-collapse border-zinc-700"><span className="flex items-center justify-center gap-2">{H}</span></th>
+                  H === "الشهر" ? <RedirectList key={i} keyN={i} content={H}/> : H === "المادة" ? <RedirectListSubject key={i} keyN={i} content={H}/> : <th key={i} className="bg-stone-400 dark:bg-stone-600 p-1 px-2 text-center border border-collapse border-stone-700"><span className="flex items-center justify-center gap-2">{H}</span></th>
                 )
               })}
             </tr>
           </thead>
           <tbody>
           
-            {data.body.filter(card => card.monthId === +monthId && card.subject !== "راحة").length == 0 ?
-              <tr>
-                <td colSpan={4} className={` dark:bg-zinc-400 dark:text-black text-xl p-1 px-2 text-center border border-zinc-700 `}>لا يوجد امتحان حتى الان.</td>
-              </tr>
-                  : data.body.filter(card => (monthId > 0 && monthId < 3) && showHoliday === "false" ? (card.monthId === monthId && card.subject !== "راحة") : monthId > 0 && showHoliday === "true" ? (card.monthId === monthId) : card).map((H, i) => {
+            {data.body.filter(card => {
+                    if (monthId === 999 || subject === "NaN") return card;
+                    if (subject === "all"){
+                      if (monthId !== 99){
+                        if (showHoliday === true) {
+                          return card.monthId === monthId
+                        }else{
+                          return card.monthId === monthId && card.subject !== "راحة";
+                        }
+                      }else{
+                        if (showHoliday === true){
+                          return card
+                        }else{
+                          return card.subject !== "راحة";
+                        }
+                      }
+                    }else{
+                      if (monthId !== 99){
+                        if (subject !== "all") {
+                          return card.monthId === monthId && card.subject === GetArabicSubjectFromEnglish(subject);
+                        }
+                      }else{
+                        return card.subject === GetArabicSubjectFromEnglish(subject);
+                      }
+                    }
+                  }).map((H, i) => {
               if (H.date === CurrentDate){
                 return(
-                  <tr key={i}>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-zinc-700`}>{H.day}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.date}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.subject}</td>
-                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700`}>{H.monthId === 1 ? "الاول" : H.monthId === 2 ? "الثاني" : "الثالث"}</td>
+                  <tr key={i} className="-z-[2] relative">
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse -z-20 ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700`}>{H.day}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse -z-20 ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.date}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse -z-20 ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.subject}</td>
+                    <td className={` bg-emerald-200 text-black dark:bg-emerald-500/70 dark:text-white animate-pulse -z-20 ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700`}>{H.monthId === 1 ? "الاول" : H.monthId === 2 ? "الثاني" : "الثالث"}</td>
                   </tr>
                 )
               }else if (H.date !== CurrentDate){
 
                 return(
                   <tr key={i}>
-                    <td className={`  ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-zinc-700 `}>{H.day}</td>
-                    <td className={`  ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700 `}>{H.date}</td>
-                    <td className={` ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700 `}>{H.subject}</td>
-                    <td className={` ${H.subject === "راحة" ? "bg-zinc-200/70 text-black/30" : "bg-zinc-100"} ${H.subject === "راحة" ? "dark:bg-zinc-400/80 dark:text-white/30" : "dark:bg-zinc-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-zinc-700 `}>{H.monthId === 1 ? "الاول" : H.monthId === 2 ? "الثاني" : "الثالث"}</td>
+                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : "" } p-1 px-2 text-center border border-stone-700 `}>{H.day}</td>
+                    <td className={`  ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.date}</td>
+                    <td className={` ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.subject}</td>
+                    <td className={` ${H.subject === "راحة" ? "bg-stone-200/70 text-black/30" : "bg-stone-100"} ${H.subject === "راحة" ? "dark:bg-stone-400/80 dark:text-white/30" : "dark:bg-stone-400 text-black"} ${H.done === true && H.done !== undefined || H.date === CorrectDate.toString() ? "line-through" : ""} p-1 px-2 text-center border border-stone-700 `}>{H.monthId === 1 ? "الاول" : H.monthId === 2 ? "الثاني" : "الثالث"}</td>
                   </tr>
                 )
               }else{

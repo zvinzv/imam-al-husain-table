@@ -57,14 +57,14 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
         e.preventDefault();
         }}>
         <div style={{"opacity": popUp ? "1" : "0", "pointerEvents" : popUp ? "auto" : "none"}} className="transition-all fixed z-50 overflow-y-clip bg-black/80 w-full h-screen top-0 left-0 grid place-content-center">
-          <div className="bg-zinc-800 flex flex-col p-3 rounded-xl gap-2 font-bold ">
+          <div className="bg-stone-800 flex flex-col p-3 rounded-xl gap-2 font-bold ">
             <label htmlFor="explain" className="text-xl my-2 text-white">ما سبب طلبك ؟</label>
-            <input ref={userInput} type="text" id="explain" className="text-white bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="عنوان الطلب"/>
+            <input ref={userInput} type="text" id="explain" className="text-white placeholder:text-stone-400 bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="عنوان الطلب"/>
             <p className="text-right">{errs.fInput === "ff" && "املاء الصندوق"}</p>
-            <textarea ref={userInput2} id=""  className="max-h-60 text-white bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="تفاصيل المشكلة او الطلب"/>
+            <textarea ref={userInput2} id=""  className="max-h-60 text-white placeholder:text-stone-400 bg-white/5 outline-none border-none p-2 px-3 rounded" placeholder="تفاصيل المشكلة او الطلب"/>
             <p className="text-right">{errs.lInput === "dd" && "املاء الصندوق"}</p>
             <div className="flex gap-2">
-              <button className="bg-emerald-500/60 hover:bg-emerald-500/70 transition-all rounded p-2 flex-grow" onClick={() => {
+              <button className="bg-emerald-500/60 hover:bg-emerald-500/70 text-white transition-all rounded p-2 flex-grow" onClick={() => {
                 if (userInput.current?.value !== "" && userInput2.current?.value !== "") {
                   handleClick(`${userInput.current?.value}, ${userInput2.current?.value}`)
                   setPopUp(false)
@@ -84,7 +84,7 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
                 }
                 //  ?  : userInput.current?.value === "" && userInput.current?.value === "" ? setErr({fInput: "ff", lInput:"dd", logic: true}) : userInput.current?.value === "" ? setErr({fInput: "ff", lInput: "", logic: true}) : userInput2.current?.value === "" ? setErr({fInput: "",lInput:"dd", logic: true}) : null; errs.logic === false ? setPopUp(false) : null
               }} >أرسال</button>
-              <button className="bg-zinc-500/60 hover:bg-zinc-500/70 transition-all rounded p-2" onClick={() => {
+              <button className="bg-stone-500/60 hover:bg-stone-500/70 text-white transition-all rounded p-2" onClick={() => {
                 setPopUp(false);
                 setErr({logic: false, fInput: "", lInput: ""});
                 if (userInput.current !== null) userInput.current.value = ""
@@ -95,9 +95,9 @@ const SendReq = ({title="طلب اعادة النظر أو تعديل الجدو
         </div>
         
         {loading ? 
-            <button className={style ? style : `flex items-center gap-2 ${!err ? "bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700":"bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
+            <button className={style ? style : `flex items-center gap-2 ${!err ? "bg-stone-400 hover:bg-stone-500 dark:bg-stone-600 dark:hover:bg-stone-700":"bg-stone-400 hover:bg-stone-500 dark:bg-stone-600 dark:hover:bg-stone-700"} transition-all p-3 rounded w-fit mx-auto font-bold opacity-60 shadow-lg`} disabled><i className="ri-file-edit-fill"></i> {title}</button> 
           : 
-            <button onClick={() => setPopUp(prev => !prev)} className={style ? style : `flex items-center gap-2 ${!err ? "bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700":"bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700"} bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-600 dark:hover:bg-zinc-700 transition-all p-3 rounded w-fit mx-auto font-bold`}><i className="ri-file-edit-fill"></i>{title}</button>
+            <button onClick={() => setPopUp(prev => !prev)} className={style ? style : `flex items-center gap-2 ${!err ? "bg-stone-400 hover:bg-stone-500 dark:bg-stone-600 dark:hover:bg-stone-700":"bg-stone-400 hover:bg-stone-500 dark:bg-stone-600 dark:hover:bg-stone-700"} bg-stone-300 hover:bg-stone-400 dark:bg-stone-600 dark:hover:bg-stone-700 transition-all p-3 rounded w-fit mx-auto font-bold shadow-lg`}><i className="ri-file-edit-fill"></i>{title}</button>
         }
         
         {   isDone === 1 ?

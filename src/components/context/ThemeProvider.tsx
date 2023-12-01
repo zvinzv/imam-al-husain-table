@@ -5,7 +5,7 @@ import { createContext, useEffect, useState } from "react"
 export const ThemeContext = createContext({})
 
 export const ThemeProvider = ({ children, old }:{children: React.ReactNode, old: string | undefined}) => {
-  const [mode, setMode] = useState(old === "light" ? "light" : old === "dark" ? "dark" : "dark")
+  const [mode, setMode] = useState(old === "dark" ? "dark" : "light")
   const toggle = () => setMode(prev => prev === "dark" ? "light" : "dark")
   useEffect(() => {
     setCookie("darkMode", mode, {maxAge: 60*60*24*365})

@@ -88,7 +88,18 @@
   border-right-color: transparent !important;
   border-bottom-color: transparent !important;
 }
-
+.arrowTop:after{
+  content: '';
+  z-index: 9999;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -17px;
+  border: 10px solid;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent;
+}
 .m{
   height: 100vh;
   display: grid;
@@ -128,12 +139,25 @@
 .moving{
   animation: moving 2s alternate infinite ease-in-out;
 }
-
+.moving2{
+  animation: moving2 5s alternate infinite ease-in-out;
+}
 @keyframes moving {
   0%{
-    transform: translate(300%);
+    transform: translateX(0%);
   }
   100%{
-    transform: translate(0%);
+    transform: translateX(200%);
   }
+}
+@keyframes moving2 {
+  0%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+.PopUpBtn button{
+  color: white;
 }

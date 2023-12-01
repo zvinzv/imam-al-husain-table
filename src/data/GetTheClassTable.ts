@@ -233,7 +233,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: "تحضير First conditional, اطلاع على Talking about the future, حل نشاط في الدفتر صفحة 55 تمرين A واجب عمل اسئلة (حزورة) عن حيوان مع ذكر الجواب.",
+        name: "1- ترتيب الدفتر.2-حل تمرين A في الدفتر صفحة 57 في كتاب النشاط. 3- عمل حزوره لكائن واحد بواسطة مفردات موجودة في كتاب النشاط صفحة 54.",
         accessories: [
           {
             id: 1,
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'الفصل الثاني - من التنفس في النباتات حتى تنفس في الافقريات ما داخل, مع رسم صفحة 66 شكل 2-5 اعلى يسار الصفحة.',
+        name: 'لا اعلم.',
         accessories: [
           {
             id: 1,
@@ -490,7 +490,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'من صفحة 34 الى 39 ما داخل, مع حل اسئله الفصل الاول.',
+        name: "من صفحة 34 الى صفحة 39 ما داخلة.",
         accessories: [
           {
             id: 1,
