@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `قواعد: التوابع, العطف.`,
+        name: `ادب: من الوحدة السادسة حتى نهاية الادب.`,
         accessories: [
           {
             id: 1,
@@ -362,7 +362,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'حفظ من 62 الى 69, حفظ الجدول الدوري.',
+        name: 'هو ما اطانه واجب, بس اقره المواد السابقة قد يسوي امتحان يومي. يفضل تقره 1- الكهروسلبية. 2- خواص الفلزات والافلزات. 3- طيف اللهب.',
         accessories: [
           {
             id: 1,
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'لا اعلم.',
+        name: 'من صفحة 9 (تكملة لما توقف عنه الاستاذ) حتى صفحة 11 داخل, (الصفحات لملزمة الاستاذ).',
         accessories: [
           {
             id: 1,
