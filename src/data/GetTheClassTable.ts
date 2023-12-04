@@ -81,7 +81,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-        name: 'مراجعة على الي اخذناه.',
+        name: 'سوف نّسمط سمطاً جميلا.',
         accessories: [
           {
             id: 1,
@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `ادب: من الوحدة السادسة حتى نهاية الادب.`,
+        name: `قواعد: العطف.`,
         accessories: [
           {
             id: 1,
@@ -233,7 +233,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: "1- ترتيب الدفتر.2-حل تمرين A في الدفتر صفحة 57 في كتاب النشاط. 3- عمل حزوره لكائن واحد بواسطة مفردات موجودة في كتاب النشاط صفحة 54.",
+        name: "عمل انشاء عن موضوع `حماية البيئة`. على ما اضن بس هذا, واذا اكو بعد قدم بلاغ من الزر ادناه.",
         accessories: [
           {
             id: 1,
@@ -675,12 +675,12 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'رسم الدائرة.',
+        name: 'نرسم الطبيعة.',
         accessories: [
           {
             id: 1,
-            file: ["/public/photo_2023-11-13_21-34-43.jpg"],
-            description: ["شكل الدائرة المرادة.", "الدائرة على شكل صورة."],
+            file: [""],
+            description: [""],
             sure: {
               name: "",
               logic: false
