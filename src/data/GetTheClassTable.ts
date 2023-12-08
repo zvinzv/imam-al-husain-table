@@ -161,7 +161,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: `قواعد: العطف.`,
+        name: `امتحان الادب.`,
         accessories: [
           {
             id: 1,
@@ -180,7 +180,7 @@ export default function GetTheClassTable(): Table  {
       },
 
       examPreparation: {
-        name: "امتحان الشهر الثاني - لم يحدد",
+        name: "امتحان الشهر الثاني الادب - من الوحدة الرابعة حتى نهاية الادب",
         accessories: [
           {
             id: 1,
@@ -193,7 +193,7 @@ export default function GetTheClassTable(): Table  {
           }
         ],
         sure: {
-          name: "",
+          name: "مرتضى ظافر",
           logic: false
         }
       }
@@ -298,7 +298,7 @@ export default function GetTheClassTable(): Table  {
         
       ],
       dailyPreparation: {
-          name: 'تحضير حل تمارين الفصل الثالث.',
+          name: 'الفصل الرابع.',
           sure: {
             name: "مرتضى ظافر", 
             logic: false
@@ -362,7 +362,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'هو ما اطانه واجب, بس اقره المواد السابقة قد يسوي امتحان يومي. يفضل تقره 1- الكهروسلبية. 2- خواص الفلزات والافلزات. 3- طيف اللهب.',
+        name: 'حفظ الجدول العناصر الانتقالية مع العناصر الانتقالية الداخلية. مع حفظ المادة التي تسبقها.',
         accessories: [
           {
             id: 1,
@@ -426,7 +426,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'من صفحة 9 (تكملة لما توقف عنه الاستاذ) حتى صفحة 11 داخل, (الصفحات لملزمة الاستاذ).',
+        name: "التكملة لما توقف عنه الاستاذ حتى نهاية الفصل. مع الملاحظة: اقره على الكتاب لا تقره على الملزمة, طبعاً هذا البلاغ من عندة مو من عدنة.",
         accessories: [
           {
             id: 1,
@@ -619,7 +619,7 @@ export default function GetTheClassTable(): Table  {
         },
       ],
       dailyPreparation: {
-        name: 'من صفحة 34 الى صفحة 36.',
+        name: 'من صفحة 43 الى صفحة 46 ما داخلة.',
         accessories: [
           {
             id: 1,
